@@ -1,0 +1,107 @@
+form.country.iso2l.notempty: 'ISO2L is not set!'
+form.country.iso3l.notempty: 'ISO3L is not set!'
+form.country.name.notempty: 'Name is not set!'
+rezervation.form.error.date.notempty: 'Date should not be empty!'
+
+title.language_list: 'Languages'
+title.language: 'Languages'
+language:
+  language_add: 'Add'
+  language_edit: 'Edit'
+  add.header: 'Language Add'
+  edit.header: 'Language Edit > %language%'
+  form:
+    name: 'Name'
+    nameLocal: 'Native name'
+    iSO2: ISO2
+    iSO3: ISO3
+    encoding: Encoding
+    status: Status
+    flag: Flag
+    weightMeansure: 'Weight units'
+    distanceMeansure: 'Distance units'
+    save: Save
+  language_list: 'Languages'
+  name.not_blank: 'Name is not set!'
+  name_local.not_blank: 'Native name is not set!'
+  iso2.not_blank: 'ISO2 is not set!'
+  iso3.not_blank: 'ISO3 is not set!'
+  weight_meansure.not_blank: 'Weight units is not set!'
+  distance_meansure.not_blank: 'Distance units is not set!'
+
+
+
+Currency: Currency
+
+variant: Variant
+'Save & Continue': 'Save & Continue'
+
+
+
+input:
+  heading:
+    placeholder: 052
+  latitude:
+    placeholder: N89 59 59,99
+  longitude:
+    placeholder: E143 49 29.99
+  date:
+    placeholder: Select Date
+  datetime:
+    placeholder: Select date and time
+  units:
+    length:
+      placeholder: Length
+      meter: m
+    volumetric_flow:
+      placeholder: Volumetric flow
+      liters_per_minute: l/min
+      liters_per_hour: l/h
+    speed:
+      placeholder: Speed
+      kilometers_per_hour: km/h
+      meters_per_second: m/sec
+      miles_per_hour: mph
+      feet_per_second: ft/sec
+    temperature:
+      placeholder: Temperature
+      celsius: °C
+    volume:
+      placeholder: Volume
+      litre: l
+    weight:
+      placeholder: Weight
+      kilogram: kg
+      ton: ton
+      pound: lb
+      ston: ton (short)
+      lton: ton (long)
+
+
+
+system.system_settings_list: System Settings
+system.system_settings_edit: Edit
+system_settings:
+  list: System Settings
+  edit: 'Edit > %setting%'
+  edit_profile: 'Edit Proile Settings > %setting%'
+  form:
+    error:
+      values_syntax_error: JSON syntax error
+      no_values: JSON is empty
+
+
+bugs:
+  form:
+    title: Report
+    type: Type
+    description: Text
+    cancel: Cancel
+    save: Send
+    error:
+      type:
+        notempty: Type is not set!
+      description:
+        notempty: Text is empty!
+        toolong: Text is too long!
+    success: Message was sent!

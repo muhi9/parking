@@ -1,0 +1,40 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    database_host: 127.0.0.1
+    database_port: ~
+    database_name: symfony
+    database_user: root
+    database_password: ~
+    # You should uncomment this if you want to use pdo_sqlite
+    #database_path: '%kernel.project_dir%/var/data/data.sqlite'
+
+    version: 3.1.102
+
+    baseurl: ~
+    mailer_transport: smtp
+    secret: ThisTokenIsNotSoSecretChangeIt23d443f
+
+    base_airport: LBLS
+    sender_name: FMS
+    mailer_transport: smtp
+    mailer_host: aspen.nocdirect.com
+    mailer_user: 'deniz.kadir@polirind.com'
+    mailer_password: 'RnIv9k6#7DeF'
+    mail_sender: 'anton.blajev@polirind.com'
+    mail_bug_report: 'anton.blajev@polirind.com'
+    viber_token: 'https://developers.viber.com/docs/api/rest-bot-api/#resource-url-2'
+    telegram_api_id: 1028202
+    telegram_api_hash: 6eae3820fba09b56906e88e7ffa0fc40
+    default_country: BG
+    bookingCourseName: 'PPL(A)'
+    captcha:
+        'What is the capital of Bulgaria?': 'sofia'
+        'What is the capital of Canada?': 'ottawa'
+        'What is the capital of Аustralia?': 'canberra'
+        'What is the longest river in the world?': 'nile'
+        'What is the highest peak in Bulgaria?': 'musala'
+
+    upload_directory: '%kernel.project_dir%/var/uploads'
+

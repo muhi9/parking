@@ -1,0 +1,24 @@
+services:
+#    users.example:
+#        class: UsersBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    user.form.registration:
+        class: UsersBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: users_user_registration }
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    user.permissions:
+        class: UsersBundle\Service\UserPermissions
+        arguments: 
+            - '@security.token_storage'
+        public: true
+    kernel.listener.logged_in_user_listener:
+        class: UsersBundle\EventListener\LoggedInUserListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+        arguments: [ '@router', '@service_container','@security.token_storage']  
+    

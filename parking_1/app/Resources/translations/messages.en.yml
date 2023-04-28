@@ -1,0 +1,41 @@
+label.back: Back
+label.add: Add
+label.edit: Edit
+label.addNew: 'New Item'
+label.show.hide: Show/Hide
+label.save: Save
+label.list: List
+label.next: Next
+label.prev: Prev
+label.reorder: Save order
+label.user_list: User list
+label.list_for_user: List for user
+
+form.notempty: "Valid from can't be empty"
+form.validdate: 'Must be a valid date'
+
+security.login.donthave_account: 'Don''t have an account?'
+security.login.have_account: 'Do you have an account?'
+security.login.social: 'Or sign with social account'
+security.login.facebook: Facebook
+security.login.twitter: Twitter
+security.login.google: Google
+security.login.sing_up: 'Sign Up'
+exception.onDelete: 'Caught exception on delete: '
+
+fos.register.error.captch: 'Wrong answer, please try again.'
+fos.register.submit: 'Register'
+security.login.forgetpass: 'Forgot Password ?'
+security.reset.new_password: New password
+security.reset.repeat_new_password: Repeat password
+security.reset.password: Reset password
+security.login.title: Login
+security.login.login: Login
+
+error.page.not.found: '404 Page not found'
+error.server.error: '500 Opps!'
+
+homepage.homepage: Home page
+reservation.reservation_add: Reservation
+menu.reservation: Reservations
+rezervation.to.error.date.end_is_less: Date to cannot be less than Date from

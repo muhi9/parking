@@ -1,0 +1,76 @@
+.edit-availability {
+	float: right;
+}
+.week {
+	overflow: hidden;
+}
+.week .day {
+	float: left;
+	height: 2.8em;
+	width: 14.2%;
+	border: 1px solid #cdcfd4;
+	border-right: 0 none;
+	cursor: pointer;
+	background: #f3f6f9;
+	position: relative;
+}
+.default-available .week .day {background:#f4fdf2}
+.default-not-available .week .day {background:#f9f3f3}
+.week .day:last-child {
+	border-right: 1px solid #cdcfd4;
+}
+.week .day .day-name {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size: 1.25em;
+	padding: .1em .25em;
+	transform: translate(-50%, -50%);
+	opacity: .3;
+	transition: all .25s;
+	color: #3F4254;
+}
+.week .day:hover .day-name, .week .day.active .day-name {
+	opacity: 1;
+}
+.week .day .available {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.week .day .available .mark {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 2px;
+	padding: 0;
+	background: #dde2e6;
+	border-left: 1px solid #eaeaea;
+	border-right: 1px solid #eaeaea;
+}
+.default-available .week .day .available .mark {background:#f9f3f3}
+.default-not-available .week .day .available .mark {background:#f4fdf2}
+.week .day .available .mark div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+.show-row {
+	color: black;
+	border-color: #bbbdc3;
+}
+.dynamic.periodicalAvailability select {
+	width: 45%;
+	display: inline-block;
+	margin: 0 2%;
+}
+.periods > [data-period] {
+	display: none;
+	margin-top: 1em;
+	margin-bottom: 2em;	
+}

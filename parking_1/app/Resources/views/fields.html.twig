@@ -1,0 +1,194 @@
+{# app/Resources/views/form/fields.html.twig #}
+
+{%- block widget_attributes -%}
+    {% set attr = attr|merge({'class': 'form-control' ~ (attr.class is defined ? ' ' ~ attr.class : '') ~ (errors|length > 0 ? ' error' : '')} ) %}
+    id="{{ id }}" name="{{ full_name }}"
+    {%- if disabled %} disabled="disabled"{% endif -%}
+    {%- if required %} required="required"{% endif -%}
+    {{ block('attributes') }}
+{%- endblock widget_attributes -%}
+
+
+
+{% block autocomplete_widget %}
+    {%set selecteId = ""%}
+    {%set selecteName = ""%}
+
+    {% if form.vars.value is not empty %}
+        {%set selecteId = form.vars.data.id %}
+        {%set selecteName = form.vars.data.name %}
+    {% endif %}
+
+    {% javascripts
+        '@FBaseBundle/Resources/public/js/autocomplete.js'
+        filter='?uglifyjs2'
+        output='widget/autocomplete.js'
+    %}
+    <script src="{{ asset_url }}?r={{ver}}" type="text/javascript"></script>
+    {% endjavascripts %}
+    <input id="{{form.vars.id}}"  class="autocompletes form-control" list="{{ form.vars.id }}_list"  data-type="{{form.vars.attr.type.id}}" autocomplete="off" value="{{selecteName}}">
+    <input name="{{form.vars.full_name}}" id="{{form.vars.id}}_hidden" type="hidden" list="{{ form.vars.id }}_list"  value="{{selecteId}}" />
+    <script type="text/javascript">autocomplete("{{form.vars.id}}");</script>
+
+{% endblock %}
+
+{% block multi_assoc_name_widget %}
+
+
+    {% for key,choice in form.vars.choices %}
+        <input type="text" name="{{choice.name}}[{{key}}]" id="{{id}}" class="form-control" value="{{choice.value}}" />
+    {% endfor %}
+{% endblock %}
+
+
+
+{% block base_nom_tree_label %}
+
+{% if nomTypeKey in form.vars and not form.vars.nomTypeKey is empty %}
+{% else %}
+{{form_label(form)}}
+{% endif %}
+{% endblock base_nom_tree_label %}
+
+
+{%- block checkbox_widget -%}
+{# WTF. why was this here????    <input type="hidden" name="{{ full_name }}" value="" /> #}
+    <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+{%- endblock checkbox_widget -%}
+
+
+{#============================================================================================================ UNITS #}
+{#============================================================================================================ UNITS #}
+{#============================================================================================================ UNITS #}
+{%- block units_widget -%}
+    {% if not form.vars.hide_input and not form.vars.hide_units %}
+        <div class="row">
+            <div class="col-8">
+                {{ form_widget(attribute(form.parent, form.vars.value_field_name)) }}
+                {{ form_errors(attribute(form.parent, form.vars.value_field_name)) }}
+            </div>
+            <div class="col-4">
+                {{ form_widget(attribute(form.parent, form.vars.units_field_name)) }}
+                {{ form_errors(attribute(form.parent, form.vars.units_field_name)) }}
+            </div>
+        </div>
+    {% elseif form.vars.hide_units %}
+        {{ form_widget(attribute(form.parent, form.vars.value_field_name)) }}
+        {{ form_errors(attribute(form.parent, form.vars.value_field_name)) }}
+        {{ form_widget(attribute(form.parent, form.vars.units_field_name)) }}
+    {% else %}
+        {{ form_widget(attribute(form.parent, form.vars.units_field_name)) }}
+        {{ form_errors(attribute(form.parent, form.vars.units_field_name)) }}
+    {% endif %}
+
+    {% if not form.vars.hide_input and attribute(form.parent, form.vars.value_field_name).vars.attr.class is defined and 'mask' in attribute(form.parent, form.vars.value_field_name).vars.attr.class%}
+        {% javascripts '@mask'%}
+            <script src="{{ asset_url }}?r={{ver}}" type="text/javascript"></script>
+        {% endjavascripts %}
+        <script type="text/javascript">inputMask('#'+'{{attribute(form.parent, form.vars.value_field_name).vars.id}}');</script>
+    {% endif %}
+{% endblock %}
+
+
+{#============================================================================================================ AUTOCOMPLETE #}
+{#============================================================================================================ AUTOCOMPLETE #}
+{#============================================================================================================ AUTOCOMPLETE #}
+{% block ac_widget %}
+<div class="typeahead{% if form.vars.url_image %} with_images{% endif %}" {{block('attributes')|raw}}>
+    {% javascripts '@FBaseBundle/Resources/public/js/ac.js'
+        filter='?uglifyjs2'
+        output='widget/ac.js'
+    %}
+    <script src="{{ asset_url }}?r={{ver}}" type="text/javascript"></script>
+    {% endjavascripts %}
+
+    {% if form.vars.data is null or form.vars.data.id is not defined  %}
+        {% set val = "" %}
+        {% set id = "" %}
+    {% else %}
+        {% set val = attribute(form.vars.data, form.vars.choice_label) %}
+        {% set id = form.vars.data.id %}
+    {% endif %}
+
+    {% if is_granted('ROLE_ADMIN') and form.vars.link_admin is not empty %}
+        {%set found_path = ' data-path="' ~ path(form.vars.link_admin, {id:'00000'}) ~ '"' %}
+    {% elseif form.vars.link is not empty%}
+        {%set found_path = ' data-path="' ~ path(form.vars.link, {id:'00000'}) ~ '"' %}
+    {% else %}
+        {% set found_path = '' %}
+    {% endif %}
+    {% if form.vars.url_image %}
+        {% set img_url = ' data-url-image=' ~ path(form.vars.url_image, {'id':'__QUERY__'}) ~ '' %}
+        {% set img_pre = '<img src=' ~ path(form.vars.url_image, {'id':form.vars.data ? form.vars.data.id : 0}) ~ ' alt="">'%}
+    {% else %}
+        {% set img_url = '' %}
+        {% set img_pre = ''%}
+    {% endif %}
+    {{img_pre|raw}}
+
+    <input id="{{form.vars.id}}_label" value="{{ val }}" class="form-control{%if form.vars.deleted%} deleted-item{%endif%}"{%if form.vars.disabled%} disabled="disabled"{%endif%} {%if form.vars.attr.hideClear is defined%} hideClear="true"{%endif%} placeholder="{{attr.placeholder|default('')}}" data-url="{{path(form.vars.url, {'query':'__QUERY__'})}}"{{img_url}}{% if form.vars.url_reload is defined and  form.vars.url_reload is not empty%} data-url-reload="{{path(form.vars.url_reload, {'query':'__ID__'})}}"{% endif %}{% if form.vars.allow_create %} data-url-create="{{path(form.vars.url_create, {'query':'__QUERY__'})}}"{% endif %} data-filters="{{form.vars.filterPredefined|json_encode()|e('html_attr')}}" data-clear-text-on-blur="{{form.vars.clear_text_on_blur}}" data-fields="{{form.vars.filterFields|json_encode()|e('html_attr')}}"{{found_path|raw}} />
+    <input type="hidden" name="{{form.vars.full_name}}" id="{{form.vars.id}}" value="{{ id }}" class="form-control" />
+</div>
+<script>var {{form.vars.id}}_autocomplete = typeahead('#{{form.vars.id}}_label')</script>
+{% endblock ac_widget %}
+
+
+
+{%- block collection_widget -%}
+    {% import _self as _this %}
+    {% if prototype is defined and not prototype.rendered %}
+        {%- set attr = attr|merge({'data-prototype': form_widget(prototype) }) -%}
+    {% endif %}
+        {% set widgetName = "" %}
+        {% if form|length > 0 %}
+        {% set widgetName = form[0].vars.id~'-collection-widget' %}
+        {% endif %}
+            <ul id="{{widgetName}}" class="dynamic collection" style="list-style:none;"   data-prototype="{{ attr['data-prototype'] }}">
+                {% if form|length > 0 and form[0].vars.gridList is defined and form[0].vars.gridList.columns is defined %}
+                    {{_this.files_grid(form)}}
+                {% elseif form|length > 0 and form[0].vars.grouped is defined %}
+                    {{_this.files_grouped(form)}}
+                {% else %}
+                    {% for i in form %}
+                        {{ form_widget(i) }}
+                    {% endfor %}
+                {% endif %}
+
+
+                <li>
+                  <button type="button" class="btn btn-secondary btn-elevate add" data-list-selector="#{{widgetName}}">{{ "aircraft.form.add_button_files"|trans }}</button>
+                </li>
+            </ul>
+{%- endblock collection_widget -%}
+
+{#=====================SwitchType======================#}
+{%- block switch_widget -%}
+    {% if form.vars.switch is not empty %}
+    <span class="k-switch k-switch--icon">
+        <label>
+            <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+            <span></span>
+        </label>
+    </span>
+    {% else %}
+        <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    {% endif %}
+{%- endblock switch_widget -%}
+
+
+{#=====================PercentType======================#}
+{#% block session_selector_widget %}
+    {% javascripts '@LoggerBundle/Resources/public/js/selector.js' filter='?uglifyjs2' output='widget/lsel.js'%}
+        <script src="{{ asset_url }}?r={{ver}}" type="text/javascript"></script>
+    {% endjavascripts %}
+    <div class="row">
+        <div class="col-9">
+            {{ form_widget(form.session) }}
+        </div>
+        <div class="col-3">
+            {{ form_widget(form.date) }}
+        </div>
+    </div>
+    <script type="text/javascript">LoggerSelector('#{{form.vars.id}}', '{{ path('session_search', {date:'__date__', aircraft:'__aircraft__', flight:'__flight__'}) }}', {{form.vars.outputOptions|json_encode|raw}})</script>
+{% endblock session_selector_widget %#}
+{#=====================END PercentType======================#}

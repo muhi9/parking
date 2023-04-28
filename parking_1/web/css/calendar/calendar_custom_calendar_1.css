@@ -1,0 +1,4 @@
+.fc-scroller {
+   overflow-y: hidden !important;
+   height: 100% !important;
+}

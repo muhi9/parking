@@ -1,0 +1,63 @@
+{% block menu_body %}
+
+{% set activeBundle = app.request.attributes.get("_controller")|split('\\') %}
+{% if activeBundle[0] is defined -%}
+			{% set active = activeBundle[0] %}
+{% endif %}
+
+<div class="k-grid__item k-grid__item--fluid k-grid k-grid--hor k-wrapper left-0 pl-0"  id="k_wrapper">
+<div id="k_header" class="k-header k-grid__item  k-header--fixed full-width-page left-0">
+
+ <button class="k-header-menu-wrapper-close" id="k_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
+    <div class="k-header-menu-wrapper" id="k_header_menu_wrapper">
+        <div id="k_header_menu" class="k-header-menu k-header-menu-mobile ">
+       
+	<a class="position-relative navbar-brand" tabindex="-1" href="{{ path('homepage', {'ref':'logo'}) }}">
+        {% image output="images/logo.png" '@FBaseBundle/Resources/public/images/logo.png'%}<img src="{{ asset_url }}" />{% endimage %} 
+    	<div class="logo_ver">{{ helper.rootDir() }} {{ ver }}</div>
+    </a>
+	<ul class="k-menu__nav ">
+       	{% for bundle,menuItem in menu %}
+    		{% set activeClass = '' %}
+    		{% set isDropdownAttr = ''%}
+    		{% set isDropdownAr = ''%}
+    		{% if menuItem.path is defined -%}
+    			{% set isDropdownLink = 'k-menu__link' %}
+    			{% set isDropdown = 'k-menu__item k-menu__item--rel ' %}
+    			{% set url = path(menuItem.path, {'page': 'dash'}) %}
+    		{% else %}
+    			{% set url = 'javascript:void(0);'%}
+    			{% set isDropdown = 'k-menu__item  k-menu__item--submenu k-menu__item--rel' %}
+    			{% set isDropdownLink = 'k-menu__link k-menu__toggle' %}
+    			{% set isDropdownAttr = 'data-kmenu-submenu-toggle=click  ' %}
+    			{% set isDropdownAr = '<i class="k-menu__hor-arrow la la-angle-down"></i><i class="k-menu__ver-arrow la la-angle-right"></i>'%}
+    		{% endif %}
+
+	    	{% if bundle is defined and bundle==active  -%}
+	    		{% set activeClass = 'k-menu__item--active' %}
+	    	{% endif %} 
+ 			<li class="{{isDropdown}} {{activeClass}}" {{isDropdownAttr}} >
+				<a href="{{url}}" class="{{isDropdownLink}}">
+					<span class="k-menu__link-text">{{menuItem.label|trans([],'menu')|raw}}</span>
+					{{isDropdownAr|raw}}
+				</a>
+		        {% if menuItem.sub is defined -%}
+		        	<div class="k-menu__submenu k-menu__submenu--classic k-menu__submenu--left" >
+                        <ul class="k-menu__subnav">
+                            {% for label,subItem in menuItem.sub %}
+							<li class="k-menu__item" aria-haspopup="true">
+								<a href="{{ path(subItem.path, {'page': 'dash'}) }}" class="k-menu__link">
+									<i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
+									<span class="k-menu__link-text">{{subItem.label|trans([],'menu')|raw}}</span>
+								</a>
+							</li>
+							{% endfor %}
+						</ul>	
+		        	</div>
+		        {% endif -%}
+	        </li>
+	    {% endfor %}
+    </ul>
+ 	</div>
+</div>
+{% endblock menu_body %}

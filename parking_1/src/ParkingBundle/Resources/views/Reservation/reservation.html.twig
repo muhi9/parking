@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{'Reservation | Parking'|trans}}{% endblock %}
+
+
+
+
+{% block content_body %}
+{% import _self as _this %}
+{# {% macro spaces_template(form) %}
+    <li>
+        <div class="row">
+            
+            <div class="col-9">
+                {{ form_row(form.typeOfMotorVehicle) }}
+                {{ form_errors(form.typeOfMotorVehicle) }}
+            </div>
+            <script type="text/javascript">
+            inputMask('#'+'{{form.typeOfMotorVehicle.vars.id}}');
+            </script>
+        </div>
+        <button type="button" class="btn btn-delete btn-elevate">x</button>
+    </li>
+{% endmacro %} #}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="k-portlet">
+            <div class="k-portlet__head">
+                <div class="k-portlet__head-label">
+                    <h3 class="k-portlet__head-label">{{'Reserve a parking space in parking > %Reservation%'|trans(Reservation is defined ?{'%Reservation%':Reservation}:'')}} </h3> 
+                </div>
+            </div>
+            {{ form_start(form,{attr: {novalidate:'novalidate'}})}}
+
+            <ul class="nav nav-tabs nav-tabs-line nav-tabs-line-success" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active " data-toggle="tab" href="#tabs_basic" role="tab"><i class="la la-list"></i> {{ "Reservation info"|trans }}</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+            
+                {#RESERVATION INFO#}
+                <div class="tab-pane active " id="tabs_basic" role="tabpanel">
+                    <div class="person">
+                        {{ form_row(form.parking) }}
+                        {{ form_row(form.firstName, {attr: {placeholder: 'Enter a first name'}}) }}
+                        {{ form_row(form.lastName, {attr: {placeholder: 'Enter a last name'}}) }}
+                        {{ form_row(form.email, {attr: {placeholder: 'Enter an email address'}}) }}
+                        {{ form_row(form.parking) }}
+                        {{ form_row(form.typeVehicle) }}
+                        {{ form_row(form.dateFrom) }}
+                        {{ form_row(form.dateTo) }}
+                    </div>
+               </div>
+            </div>
+            
+            {{ form_row(form._token) }}
+            {{ form_row(form.save)}} 
+            {{ form_end(form) }}
+        <div class="tab-pane active " id="tabs_basic" role="tabpanel">
+            <button type="button" onclick="history.back()" class="btn btn-default" style= 'margin-top: 10px;margin-left: 1305px;'">Close</button>
+        </div>
+</div>
+
+
+{% endblock content_body %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@FBaseBundle/Resources/public/css/dynamic_forms.css' filter='css_url_rewrite,?uglifycss' %}<link rel="stylesheet" href="{{ asset_url }}?r={{ver}}" />{% endstylesheets %}
+{% endblock %}
+
+
+{% block header_javascripts %}
+    {{ parent() }}
+    {% javascripts '@FBaseBundle/Resources/public/js/input-mask.js' filter='?uglifyjs2' %}<script src="{{ asset_url }}?r={{ver}}"></script>{% endjavascripts %}
+{% endblock %}
+{% block javascripts %}
+
+    {% javascripts '@FBaseBundle/Resources/public/js/dynamic_forms.js' filter='?uglifyjs2' %}<script src="{{ asset_url }}?r={{ver}}"></script>{% endjavascripts %}
+    </script>
+    
+{% endblock %}

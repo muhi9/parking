@@ -1,0 +1,300 @@
+user.user_edit: Edit
+profile.list: Profiles List
+profile.list.info: Profiles
+profile.profile_edit: Edit
+profile.edit: 'Profile > %username%'
+profile.view: Profile
+user.user: Users
+users.form.label: "Edit > %username%"
+user.form.tabs.basic: Basic Info
+users.form.personType: Type
+users.form.personType.person: Natural Person
+users.form.personType.company: Legal Person
+users.form.personSubTypeCompany: Roles
+users.form.personSubTypePerson: Roles
+users.form.sita: SITA
+users.form.aftn: AFTN
+users.form.isStudent: Student
+users.form.isOperator: Operator
+users.form.call_sing: SITA/AFTN
+users.form.dateOfEnrolment: Date of Enrolment
+users.form.add_button_call_sing: Add SITA/AFTN
+users.form.contact.call_sing.placeholder: SITA/AFTN
+user.form.tabs.login: Login Info
+
+
+user.form.tabs.contacts: Contacts
+user.form.tabs.emergency.contacts: Emergency Contacts
+users.form.phone: Phones
+users.form.contact.phone_code.placeholder: +1 (Country code)
+users.form.contact.phone_number.placeholder: Phone number
+users.form.add_button_phone: Add phone or fax
+users.form.mail: E-Mails
+users.form.uniq_mail: E-mail is already used. Please choose another.
+users.form.uniq_username: Username already used. Please choose another.
+users.form.contact.mail.placeholder: E-Mail
+users.form.add_button_mail: Add e-mail
+users.form.url: Websites
+users.form.contact.url.placeholder: URL
+users.form.add_button_url: Add website
+users.form.soc: SN Profiles
+users.form.contact.soc.placeholder: Profile
+users.form.add_button_soc: Add social network profile
+users.form.im: IM Contacts
+users.form.contact.im.placeholder: Profile
+users.form.add_button_im: Add IM
+users.form.emergency: Emergency Contacts
+users.form.contact.emergency_person.placeholder: Person name
+users.form.contact.emergency_contact.phone.placeholder: Contact phone
+users.form.contact.emergency_contact.email.placeholder: Contact email
+users.form.add_button_emergency: Add emergency contact
+users.form.addresse: Addresses
+users.form.addresse.address1.placeholder: Address
+users.form.addresse.address1Phonetic.placeholder: Phonetic Address
+users.form.addresse.address2.placeholder: Additional address
+users.form.addresse.address2Phonetic.placeholder: Phonetic Additional address
+users.form.addresse.place.placeholder: Place
+users.form.addresse.placePhonetic.placeholder: Phonetic Place
+users.form.addresse.postcode.placeholder: ZIP / Postal code
+users.form.addresse.municipality.placeholder: Municipality
+users.form.addresse.municipalityPhonetic.placeholder: Phonetic Municipality
+users.form.addresse.country.placeholder: Country
+users.form.add_button_address: Add address
+users.form.user: Login username
+users.form.images: Images
+users.form.enabled: Enable
+
+user.form.tabs.documents: ID Documents
+users.form.document: Documents
+users.form.add_button_document: Add ID Document
+users.form.document.number.placeholder: Document Number
+users.form.document.personalID.placeholder: Personal ID Number
+users.form.document.authority.placeholder: Authority
+users.form.document.authority_phonetic.placeholder: Phonetic Authority
+users.form.document.issued.placeholder: Date of Issue
+users.form.document.expire.placeholder: Date of Expiry
+
+
+user.form.tabs.bank: Bank Details
+users.form.bank: Bank Accounts
+users.form.add_button_bank: Add bank account
+users.form.bank.bank.placeholder: Bank name
+users.form.bank.iban.placeholder: IBAN
+users.form.bank.bic.placeholder: BIC
+users.form.bank.swift.placeholder: SWIFT
+
+user.form.tabs.course: Courses
+users.form.course: Courses
+user.form.course.course: Course
+user.form.course.subCourse: 'Sub Course'
+user.form.course.issue: Issue
+user.form.course.revision: Revision
+user.form.course.start: 'Course start date'
+user.form.course.end: 'Course end date'
+users.form.add_button_course: Add course
+
+
+user.form.tabs.licenses: Licenses
+
+user.form.tabs.other: Other
+
+
+users.form.companyName: Company Name
+users.form.companyName_phonetic: Company Name Phonetic
+users.form.companyType: 'Type of Legal Person'
+users.form.companyType_phonetic: 'Type of Legal Person Phonetic'
+users.form.companyID: Company ID Number
+users.form.companyVAT: VAT Number
+users.form.companyPerson: Accountable Person
+users.form.companyPerson_phonetic: Accountable Person Phonetic
+users.form.companyPerson_phonetic.placeholder: Accountable Person Phonetic
+users.form.parentOrganisation: Parent Organisation
+users.form.language: Language
+users.form.nickname: Nickname
+users.form.trademark: Trademark
+users.form.prefix: Prefix
+users.form.prefix_phonetic: Prefix Phonetic
+users.form.suffix: Suffix
+users.form.suffix_phonetic: Suffix Phonetic
+users.form.nationality: Nationality
+users.form.sex: Sex
+users.form.firstName: First name
+users.form.firstName_phonetic: First name Phonetic
+users.form.middleName: Middle name
+users.form.middleName_phonetic: Middle name Phonetic
+users.form.lastName: Last name
+users.form.lastName_phonetic: Last name Phonetic
+users.form.mobile1: Mobile 1
+users.form.mobile2: Mobile 2
+users.form.phone1: Phone 1
+users.form.phone2: Phone 2
+user.form.contact.contactType: Contact Type
+user.form.address.contactType: Contact Type
+user.form.address.address1: Address
+user.form.address.address2: Additional Address field
+user.form.address.place: Place
+user.form.address.postcode: ZIP / Postal code
+user.form.address.municipality: Municipality
+user.form.address.country: Country
+user.form.contact.emergencyContactBnomPhoneType: Contact Phone Type
+user.form.contact.emergencyContactBnomEmailType: Contact Email Type
+users.form.fax1: Fax 1
+users.form.fax2: Fax 2
+users.form.email1: Email 1
+users.form.email2: Email 2
+users.form.website1: Website 1
+users.form.website2: website 2
+users.form.emrgFullName: 'Emergency contact name'
+users.form.emrgPhone: 'Emergency contact phone'
+users.form.emrgEmail: 'Emergency contact email'
+users.form.address1: Address 1
+users.form.address2: Address 2
+users.form.place: Place
+users.form.zipPostCode: 'Postcode'
+users.form.municipality: Municipality
+users.form.dob: 'Date of Birth'
+users.form.placeOfBirth: 'Place of birth'
+users.form.zipPostCodeOfBirth: 'Postcode of birth place'
+users.form.municipalityOfBirth: 'Municipality of birth'
+users.form.countryOfBirth: 'Country of birth'
+users.form.citizenship: 'Citizenship'
+users.form.nameOfBank: 'Bank name'
+users.form.iban: IBAN
+users.form.bicCode: 'BIC code'
+users.form.pinEgn: 'PIN / EGN'
+users.form.ssNumber: 'Social security number'
+users.form.languages: 'Languages'
+users.form.soloCurrent: Solo Current
+users.form.passangersCurrent: Passangers Current
+users.form.debit: Current Debit
+users.form.disabled: 'Disabled'
+users.form.company: 'Company'
+users.form.departament: Departament
+users.form.job_title: Job Title
+users.form.departament_person: Departament
+users.form.job_title_person: Job Title
+users.form.departament_company: Departament
+users.form.job_title_company: Job Title
+users.form.idCardNumber: 'ID card number'
+users.form.idCardAuthority: 'ID card authority'
+users.form.idCardIssue: 'ID card issue'
+users.form.idCardExpiry: 'ID card expiry'
+users.form.passportNumber: 'Passport number'
+users.form.passportAuthority: 'Passport authority'
+users.form.passportIssue: 'Passport issue'
+users.form.passportExpiry: 'Passport expiry'
+users.form.silent.from: 'silent from'
+users.form.silent.to: 'to'
+users.form.not.valid.value: 'value is not valid'
+users.form.altitude: Altitude
+users.form.centerOfGravity: Arm/CG
+users.form.distance: Distance
+users.form.flow: Fluid Flow
+users.form.volume: Volume
+users.form.geographicCoordinate: Latitude/Longitude
+users.form.length: Length
+users.form.pressure: Pressure
+users.form.temperature: Temperature
+users.form.time: Time
+users.form.velocity: Velocity
+users.form.verticalSpeed: Vertical Speed
+users.form.visibility: Visibility
+users.form.weight: Weight
+users.form.windSpeed: Wind Speed
+
+group.edit.submit: 'Update group'
+group.show.name: 'Group name'
+group.new.submit: 'Create group'
+group.flash.updated: 'The group has been updated.'
+group.flash.created: 'The group has been created.'
+group.flash.deleted: 'The group has been deleted.'
+security.login.username: Username
+security.login.password: Password
+security.login.remember_me: 'Remember me'
+security.login.submit: 'Log in'
+profile.show.username: Username
+profile.show.email: Email
+profile.edit.submit: Update
+profile.flash.updated: 'The profile has been updated.'
+change_password.submit: 'Change password'
+change_password.flash.success: 'The password has been changed.'
+registration.check_email: "An email has been sent to %email%. It contains an activation link you must click to activate your account.\n"
+registration.confirmed: 'Congrats %username%, your account is now activated.'
+registration.back: 'Back to the originating page.'
+registration.submit: Register
+registration.flash.user_created: 'The user has been created successfully.'
+registration.email.subject: 'Welcome %username%!'
+registration.email.message: "Hello %username%!\n\nTo finish activating your account - please visit %confirmationUrl%\n\nThis link can only be used once to validate your account.\n\nRegards,\nthe Team.\n"
+resetting.check_email: "An email has been sent. It contains a link you must click to reset your password.\nNote: You can only request a new password once within %tokenLifetime% hours.\n\nIf you don't get an email check your spam folder or try again.\n"
+resetting.request.username: 'Username or email address'
+resetting.request.submit: 'Reset password'
+resetting.reset.submit: 'Change password'
+resetting.flash.success: 'The password has been reset successfully.'
+resetting.email.subject: 'Reset Password'
+resetting.email.message: "Hello %username%!\n\nTo reset your password - please visit %confirmationUrl%\n\nRegards,\nthe Team.\n"
+layout.logout: 'Log out'
+layout.login: 'Log in'
+layout.register: Register
+layout.logged_in_as: 'Logged in as %username%'
+form.group_name: 'Group name'
+form.username: Username
+form.email: Email
+form.current_password: 'Current password'
+form.password: Password
+form.password_confirmation: 'Repeat password'
+form.new_password: 'New password'
+form.new_password_confirmation: 'Repeat new password'
+title.userInfo: "User Info"
+title.userinfo: "User Info"
+title.users: "Users"
+label.userlist: "User List"
+user.user_list: "User List"
+persona.persona_info: "User info"
+users.form.message_provider: 'Message provider'
+users.form.add.silent: 'add silent hours'
+messages_provider.do_not_send_messages_during_some_hours: 'Do not send messages during some hours'
+profile.profile: 'Profiles'
+profile.profile_add: 'Profile add'
+profile.add: 'Profile add'
+users.form.save: Save
+users.form.error:
+  firstName_is_blank: 'First name is not set!'
+  lastName_is_blank: 'Last name is not set!'
+  nickname_is_blank: 'Nickname is not set!'
+  companyName_is_blank: 'Company name is not set!'
+  companyVAT_is_blank: 'Company VAT Number is not set!'
+  companyPerson_is_blank: 'Accountable Person is not set!'
+  dateOfEnrolment_is_blank: 'Date of Enrolment is not set!'
+  emergency:
+    emergency_contact_is_blank: 'Emergency Contact is not set!'
+    phone_is_blank: 'Emergency Phone is not set!'
+    mail_is_blank: 'Emergency Mail is not set!'
+  address:
+    personalInfo_is_blank: Personal info is not set!
+    contactType_is_blank: Contact Type is not set!
+    address1_is_blank: Address is not set!
+    address1Phonetic_is_blank: Address Phonetic is not set!
+    place_is_blank: Place is not set!
+    placePhonetic_is_blank: Place Phonetic is not set!
+    postcode_is_blank: Postcode is not set!
+    municipality_is_blank: Municipality is not set!
+    country_is_blank: Country is not set!
+users.form.info: Profile
+users.form.edit: Edit User
+users.form.roles: Role
+users.form.roles.admin: Admin
+users.form.roles.operator: Parking owner
+users.form.roles.client: Client
+
+user.form.course.error.course_is_blank: 'Course is not set!'
+user.form.course.error.sub_course_is_blank: 'Sub Course is not set!'
+user.form.course.error.issue_is_blank: 'Issue is not set!'
+user.form.course.error.revision_is_blank: 'Revision is not set!'
+user.form.course.error.start_is_blank: 'Course start date is not set!'
+user.form.course.error.end_is_less: 'Course end date can not be less from start!'
+
+user.form.tabs.availability: Availability
+user.form.tabs.system_settings: Settings
+user.form.tabs.prices: Prices
+user.form.tabs.invoices: Invoices
+user.form.tabs.limits: Limitations

@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Parking | Edit{% endblock %}
+
+{% block content_body %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="k-portlet">
+            
+            {{ form_start(form,{attr: {novalidate:'novalidate'}})}}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content_breadcrumb %}
+<a href="{{path('parking_add')}}" class="btn btn-sm btn-elevate btn-brand">
+    <i class="flaticon2-add-1 k-padding-l-5 k-padding-r-0"></i>
+    <span class="k-font-bold">{{'label.addNew'|trans}}</span>&nbsp;
+</a>
+
+{% endblock content_breadcrumb %}

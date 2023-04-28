@@ -1,0 +1,19 @@
+input.date.placeholder: Date
+price_list: 'Price list'
+price_add: 'Price add'
+price:
+  filter:
+    price_type: 'Type'
+    from: 'Valid From'
+    to: 'Valid To'
+  form:
+    priceType: 'Type'
+    fromDate: 'Valid From' 
+    toDate: 'Valid To'
+    price: 'Price'
+    required: 'Is required'
+    name: 'Name'
+    save: 'Save'
+    error:
+      pricetype: 'Type is not set!'
+      price: 'Price is not set!'

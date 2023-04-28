@@ -1,0 +1,227 @@
+div.content {
+    text-align: center;
+    margin: 0 auto;
+}
+/*on focus element in form*/
+.form-control:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem rgb(88 103 221 / 25%) !important;
+    box-shadow: 0 0 0 0.2rem rgb(88 103 221 / 25%) !important;
+}
+form.k-form button:focus, form.k-form input[type="checkbox"]:focus + span  {
+    color: #495057;
+    background-color: #fff;
+    border-color: #9aabff;
+    outline: 0;
+    -webkit-box-shadow: 0 0 0 0.2rem rgb(88 103 221 / 25%);
+    box-shadow: 0 0 0 0.2rem rgb(88 103 221 / 25%);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: inherit;/*0 0 0 30px white inset !important;*/
+}
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+    -webkit-text-fill-color: inherit;/*red !important*/;
+}
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: inherit1px solid green;*/
+  -webkit-text-fill-color: inherit/*green;*/
+  -webkit-box-shadow: inherit/*0 0 0px 1000px #000 inset;
+  transition: background-color 5000s ease-in-out 0s;
+  */
+}
+
+.autocomplete_lists{
+	height: 150px;
+	overflow: auto;
+	width: inherit;
+}
+.autocomplete_lists li {
+	list-style: none;
+}
+
+
+form.horizontal .form-group {
+    margin-bottom: 0;
+}
+
+/*table header*/
+.table .thead-dark th {
+    color: #fff !important;
+ }
+
+form[readonly] [type=submit], form[readonly] .btn.add, form[readonly] .btn.btn-danger {
+    display: none;
+}
+
+.form-control, .btn, .btn input[type=submit],
+/* chechbox */ .k-checkbox > span, .k-checkbox > input:checked ~ span {
+    border: 1px solid #adaeb3;
+}
+/* checked checkbox tick */
+.k-checkbox > span:after {
+    border: 1px solid #696e86;
+}
+
+body {
+    color: #363f6f;
+}
+
+/* center grids */
+.k-portlet .k-portlet__body.main {
+    width: 94%;
+    max-width: 1742px;
+    margin: 0 auto;
+}
+
+/* center forms */
+.k-form .form-group.row {
+    /*margin-left: auto;*/
+    margin-right: auto;
+    width: 85%;
+    max-width:  1742px;
+}
+/* move submit buttons on right corner in footer*/
+.k-form button.btn[type=submit], .k-form input.btn[type=submit] {
+    margin: 0 calc(5%) 0 auto;
+    display: block;
+}
+
+.saveOrder {
+    display: inline-flex;
+    margin: 2px;
+    padding: 6px;
+    font: normal normal normal 16px/1 "LineAwesome";
+    font-size: inherit;
+    text-decoration: inherit;
+    text-rendering: optimizeLegibility;
+    text-transform: none;
+}
+.saveOrder span::before {
+    content: "\f2e9";
+}
+.saveOrder span::after {
+    content: "\f2d8";
+}
+
+.clearbut {
+    position: absolute;
+    top: 8px;
+    right: 27px;
+    z-index: 1;
+    background: #fff;
+    padding: 5px;
+}
+
+.deleted-item {
+    text-decoration: line-through;
+}
+
+/*statuses color*/
+.new-status{
+    background: #E4E6EF !important;
+    color: #3F4254 !important;
+}
+
+.confirm-status{
+    background: #3699FF !important;
+    color: #fff !important;
+}
+
+.pending-status, .dispatch-status{
+    background: #FFA800 !important;
+    color: #fff !important;
+}
+
+.check_in-status{
+    background: #1BC5BD !important;
+    color: #fff !important;
+}
+
+.cancel-status{
+    background: #F64E60 !important;
+    color: #fff !important;
+}
+
+.invoice-status {}
+.payment-status {}
+
+
+.page-scrolltop, .page-scrollbottom {
+    display: flex;
+    opacity: 0.3;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 90;
+    border-radius: 50%;
+    background: #5d78ff;
+    transition: all 0.5s;
+    zoom: 0.0001;
+    box-shadow: 0 0 0px 10px rgba(69, 65, 78, 1);
+}
+.page-scrolltop {
+    bottom: 70px;
+}
+.page-scrolltop--on .page-scrolltop:hover, .page-scrollbottom--on .page-scrollbottom:hover {
+    opacity: 1;
+}
+.page-scrolltop i, .page-scrollbottom i {
+    font-size: 1.3rem;
+    color: #fff;
+}
+.page-scrolltop--on .page-scrolltop, .page-scrollbottom--on .page-scrollbottom {
+    zoom: 1;
+    opacity: 0.3;
+    box-shadow: 0 0 20px 10px rgba(69, 65, 78, 0);
+}
+
+div.input-percent {
+    position: relative;
+}
+div.input-percent::after {
+    content: "%";
+    position: absolute;
+    right: 2em;
+    top: .75em;
+}
+div.input-percent-direct.input-percent::after {
+    right: 1em;
+}
+div.input-percent input {
+    padding-right: 2em;
+}
+
+.k-portlet__body.main .filter.row .k-portlet__body {
+    width: 100%;
+}
+.headerClock {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0px 0.25rem;
+}
+#k_header_menu img { width:14%} 
+.orange-font-color {color: #ff6600 !important;}

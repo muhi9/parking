@@ -1,0 +1,19 @@
+{% block content_breadcrumb %}
+	{% set parentLabel = parent['_route']|split('_')[0]~'.'~parent['_route'] %}
+	{% set lastLabel = last['_route']|split('_')[0]~'.'~last['_route'] %}
+	{% set url_param = {'page':last['_route']} %}
+
+	{% if(parent['_route']==last['_route']) %}
+    	{% set lastLabel = 'label.list' %}
+    {% endif %}
+
+    {% if(parent['id'] is defined and parent['id'] is not empty) %}
+    	{% set url_param = url_param|merge({'id':parent['id']}) %}
+    {% endif %}
+    <a href="{{ path('homepage')}}" class="k-content__head-breadcrumb-link">{{'label.dashboards'|trans }}</a>
+    <span class="k-content__head-breadcrumb-separator"></span>
+    <a href="{{ path(parent['_route'], url_param)}}" class="k-content__head-breadcrumb-link">{{parentLabel|trans }}</a>
+	<span class="k-content__head-breadcrumb-separator"></span>
+	<span class="k-content__head-breadcrumb-link k-content__head-breadcrumb-link--active">{{lastLabel|trans }}</span>
+
+{% endblock content_breadcrumb %}

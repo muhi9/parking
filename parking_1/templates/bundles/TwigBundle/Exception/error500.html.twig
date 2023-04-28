@@ -1,0 +1,15 @@
+{% extends 'minimal.html.twig' %}
+{% block title %}{{'error.server.error'|trans}}{% endblock %}
+{% block content_body %}
+    <div class="text-center">
+        <h1>{{'Opps! An error occurred'|trans}}.</h1>
+        <p>
+            {#{- exception.message|trans() -}#}
+            {{- status_text|trans() -}}
+            <br />
+            {{-'Error code: '~status_code|trans() -}}
+            <br />
+            <a href="{{ path('homepage') }}">{{'Return to the homepage'}}</a>.
+        </p>
+    </div>
+{% endblock content_body %}

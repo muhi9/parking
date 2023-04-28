@@ -1,0 +1,23 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: localhost
+    database_port: null
+    database_name: parking
+    database_user: root
+    database_password: null
+    secret: ThisTokenIsNotSoSecretChangeIt
+    baseurl: 'http://127.0.0.1:8000/'
+    sender_name: PM
+    version: 3.1.102
+
+    mailer_transport: smtp
+    mailer_host: 
+    mailer_user: 
+    mailer_password: 
+    mailer_encryption: ssl
+    mailer_auth_mode: login
+    mailer_port: 465
+   
+    mail_sender: 
+    mail_bug_report: 
+    

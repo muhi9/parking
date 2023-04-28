@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}{{title|default()|trans }}{% endblock %}
+
+
+{% block content_body %}
+{% import _self as _this %}
+{% macro phone_template(form) %}
+    <li>
+        <div class="row">
+            
+            <div class="col-9">
+                {{ form_widget(form.phone, {attr: {placeholder: 'users.form.contact.phone_number.placeholder'}}) }}
+                {{ form_errors(form.phone) }}
+            </div>
+            <script type="text/javascript">
+            inputMask('#'+'{{form.phone.vars.id}}');
+            </script>
+        </div>
+        <button type="button" class="btn btn-delete btn-elevate">x</button>
+    </li>
+{% endmacro %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="k-portlet">
+            <div class="k-portlet__head">
+                <div class="k-portlet__head-label">
+                    <h3 class="k-portlet__head-label">{{'users.form.label'|default()|trans(user is defined ?{'%username%':user.fullName}:'') }}</h3>
+                </div>
+            </div>
+
+            {{ form_start(form,{attr: {novalidate:'novalidate'}})}}
+
+            <ul class="nav nav-tabs nav-tabs-line nav-tabs-line-success" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#tabs_login" role="tab"><i class="la la-key"></i> {{ "user.form.tabs.login"|trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " data-toggle="tab" href="#tabs_basic" role="tab"><i class="la la-list"></i> {{ "user.form.tabs.basic"|trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#tabs_contacts" role="tab"><i class="la la-phone"></i> {{ "user.form.tabs.contacts"|trans }}</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+            
+                {#LOGIN#}
+                <div class="tab-pane active" id="tabs_login" role="tabpanel">
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.username) }}
+                    {{ form_row(form.plainPassword) }}
+                    {#{ form_row(form.roles) }#} 
+
+                    {% if permissions.isAdmin() %}
+                        {{ form_row(form.enabled) }}
+                    
+                        {{ form_row(form.roles) }}
+                    {% endif %}
+
+                
+
+                </div>
+                {#BASIC INFO#}
+                <div class="tab-pane " id="tabs_basic" role="tabpanel">
+                    <div class="person">
+                        {{ form_row(form.firstName) }}
+                        {{ form_row(form.middleName) }}
+                        {{ form_row(form.lastName) }}
+                    </div>
+               </div>
+                
+                {#CONTACTS#}
+                <div class="tab-pane" id="tabs_contacts" role="tabpanel">
+                    <div class="form-group row">
+                        {{ form_label(form.phone, null, {'label_attr': {'class': 'col-form-label col-lg-3 col-sm-12'}}) }}
+                        <div class="col-lg-9 col-md-9 col-sm-12">
+                            <ul class="dynamic phone" data-index="{{form.phone.vars.data|length}}" data-prototype="{{ _this.phone_template(form.phone.vars.prototype)|e('html_attr') }}">
+                                {% for i in form.phone %}
+                                    {{ _this.phone_template(i) }}
+                                {% endfor %}
+                                <li><button type="button" class="btn btn-secondary btn-elevate add">{{ "users.form.add_button_phone"|trans }}</button></li>
+                            </ul>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            
+            {{ form_row(form._token) }}
+            {{ form_row(form.save) }}
+            {{ form_end(form) }}
+</div>
+
+
+{% endblock content_body %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@FBaseBundle/Resources/public/css/dynamic_forms.css' filter='css_url_rewrite,?uglifycss' %}<link rel="stylesheet" href="{{ asset_url }}?r={{ver}}" />{% endstylesheets %}
+{% endblock %}
+
+
+{% block header_javascripts %}
+    {{ parent() }}
+    {% javascripts '@FBaseBundle/Resources/public/js/input-mask.js' filter='?uglifyjs2' %}<script src="{{ asset_url }}?r={{ver}}"></script>{% endjavascripts %}
+{% endblock %}
+{% block javascripts %}
+
+    {% javascripts '@FBaseBundle/Resources/public/js/dynamic_forms.js' filter='?uglifyjs2' %}<script src="{{ asset_url }}?r={{ver}}"></script>{% endjavascripts %}
+
+    </script>
+
+{% endblock %}

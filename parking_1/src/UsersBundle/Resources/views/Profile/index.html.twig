@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block title %}{{'profile.list.info'|trans }}{% endblock %}
+
+{% block content_body %}
+{% set url_params = app.request.server.get('REDIRECT_URL')|split('/') %}
+{% if url_params[2] is defined  and url_params[2] is not empty %}
+    {% set title =  url_params[2]~'.profile.list'%}
+{%endif%}
+<!-- begin:: Content Body -->
+<div class="k-content__body    k-grid__item k-grid__item--fluid" id="k_content_body">
+    <div class="k-portlet k-portlet--mobile">
+        <div class="k-portlet__head">
+            <div class="k-portlet__head-label">
+                <h3 class="k-portlet__head-title">{{title|default('Operators')|trans}}</h3> &nbsp;
+            </div>
+            <div class="k-portlet__head-label">
+                {% if isOperator is defined and isOperator is not empty %}
+                    <a href="{{path('profile_add',{'isOperator':'true'})}}" class="btn btn-sm btn-elevate btn-brand">
+                        <i class="flaticon2-add-1 k-padding-l-5 k-padding-r-0"></i>
+                        <span class="k-font-bold">{{'label.addNew'|trans}}</span>&nbsp;
+                    </a>
+                {% else %}
+                    <a href="{{path('profile_add')}}" class="btn btn-sm btn-elevate btn-brand">
+                        <i class="flaticon2-add-1 k-padding-l-5 k-padding-r-0"></i>
+                        <span class="k-font-bold">{{'label.addNew'|trans}}</span>&nbsp;
+                    </a>
+                {% endif %}
+	        </div>
+        </div>
+		{{ render(controller('UsersBundle\\Controller\\ProfileController::listAction')) }}    
+    </div>
+</div>
+{% endblock content_body %}
+
+{% block content_breadcrumb %}
+  <a href="{{ path('homepage')}}" class="k-content__head-breadcrumb-link">{{'label.dashboards'|trans }}</a>
+    <span class="k-content__head-breadcrumb-separator"></span>
+    <span class="k-content__head-breadcrumb-link k-content__head-breadcrumb-link--active">{{'profile.list'|trans }}</span> 
+{% endblock content_breadcrumb %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

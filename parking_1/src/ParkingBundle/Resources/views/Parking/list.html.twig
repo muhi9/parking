@@ -1,0 +1,20 @@
+{% import 'base_datatable.html.twig' as datatable %}
+
+<div class="k-portlet__body main">
+    {{ datatable.html_block(table) }}
+</div>
+
+
+{% block javascripts %}
+    {{ datatable.script_block(table) }}
+{% endblock %}
+{% block stylesheets %}
+<style type="text/css">
+.dataTables_info{
+    display: none;
+    width:45%;
+    float: left;
+}
+</style>
+
+{% endblock %}

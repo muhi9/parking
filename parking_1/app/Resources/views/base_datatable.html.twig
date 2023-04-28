@@ -1,0 +1,265 @@
+{#
+
+DISPLAY HTML TABLE:
+{{ datatable.html_block(table, *searchFormIsNotRequired) }}
+
+
+INIT SCRIPTS FOR CURRENT TABLE:
+{% block javascripts %}
+    {{ datatable.script_block(table) }}
+{% endblock %}
+
+#}
+
+
+
+{% macro html_block(table, searchForm) %}
+    {% if searchForm is not empty %}
+        {% import _self as maz %}
+        {{ maz.search_form(searchForm) }}
+        {% set searchFormSelector = '#kform_id_'~searchForm.vars.id %}
+    {% else %}
+        {% set searchFormSelector = '' %}
+    {% endif %}
+    <!--begin: Datatable -->
+        {#old classes table table-striped- table-bordered table-hover table-checkable #}
+        <table class="table table-striped m-table" id="id_{{table.id}}" data-search-form-selector="{{searchFormSelector}}">
+            {#<thead>#}
+            <thead class="thead-dark">
+                <tr>
+                    {% for key,name in table.fields %}
+                        <th>{{ name }}</th>
+                    {% endfor %}
+                    {%- if table['disable_actions_column'] is not defined  %}
+                        <th>Actions</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tfoot></tfoot>
+        </table>
+    <!--end: Datatable -->
+{% endmacro html_block %}
+
+
+
+
+{% macro script_block(table) %}
+<script>
+$(function() {
+    {% import _self as maz %}
+    {{ maz.column_defs(table) }}
+
+    window.DT_{{table.id}} = DT('#id_{{table.id}}', $.extend({}, {{table.rawOptions|json_encode|raw}}, {
+        columns: [
+            {%- for key,name in table.fields %}
+                {data: '{{ key|replace({'.':'_'}) }}'},
+            {% endfor %}
+            {%- if table['disable_actions_column'] is not defined  %}
+                {data: 'actions'},
+            {% endif %}
+        ],
+        columnDefs: colDefs_{{table.id}},
+        {%- if table['dom'] is defined %}
+            dom: '{{table.dom}}',
+        {% endif %}
+        {%- if table.order is defined  %}
+            order: [['{{table.order.col}}','{{table.order.sort|lower}}']],
+        {% endif %}
+        {%- if table.searchFields is defined  %}
+            searchFields: {{table.searchFields|json_encode|raw }},
+        {% endif %}
+        {% if table.ajaxComplete is defined %}
+            ajax: {
+                'url': '{{table.ajax_data_url|raw}}',
+                'type':'GET',
+                'dataType' : 'json',
+                'dataSrc': {{table.ajaxComplete|raw}}
+            },
+        {% elseif table.ajax_data_url is defined %}
+            ajax: '{{table.ajax_data_url|raw}}',
+        {% endif %}
+        {% if table.fnRowCallback is defined %}
+            fnRowCallback: {{table.fnRowCallback|raw}},
+        {% endif %}
+        {% if table.initComplete is defined %}
+            initComplete: {{table.initComplete|raw}},
+        {% endif %}
+        {% if table.datagrid_callback is defined and table.datagrid_callback is not empty %}
+            callbacks: {
+                {% for name, callback in table.datagrid_callback %}
+                    {{name}}: {{callback|raw}},
+                {% endfor %}
+            },
+        {% endif %}
+        {% if table.scrollY is defined %}
+            scrollY: '{{table.scrollY|raw}}',
+            scrollCollapse: true,
+        {% endif %}
+        {% if table.paging is defined %}
+            paging: '{{table.paging}}',
+        {% endif %}
+        {%- if table['searching'] is  defined  %}
+            searching: false,
+        {% endif %}
+        {% if table.reorderColumn is not empty %}
+            reorderColumn: {{table.reorderColumn|json_encode|raw}},
+        {% endif %}
+        lengthMenu: [[10,25,50,100,5], ['10','25','50','100','5']],
+        {% if table.table_data is not empty %}
+            data: {{table.table_data.aaData|json_encode|raw}},
+            deferLoading: [{{table.table_data.iTotalDisplayRecords}}, {{table.table_data.iTotalRecords}}]
+        {% endif %}
+
+    }));
+});
+        {%- if table['searchFields'] is defined and table['searchFields']|length > 0 %}
+
+$(function() {
+$('.dataTables_filter').css('display','none');
+});
+        {% endif %}
+</script>
+{% endmacro script_block %}
+
+
+
+{% macro column_defs(table) %}
+    {% set table_defs = {} %}
+    {% set custom = table['custom_column_defs']|default({}) %}
+    {% set idxkey = 0 %}
+    {% for k,n in table['fields'] %}
+        {%- if custom[k] is defined %}
+            {%- set tmp = {'targets':idxkey}|merge(custom[k]) %}
+            {%- set table_defs = table_defs|merge([tmp]) %}
+        {% endif %}
+        {% set idxkey = idxkey+1 %}
+    {% endfor %}
+
+    {# set actions column if not defined and not disabled #}
+    {%- if table.renderers['actions'] is not defined and table['disable_actions_column'] is not defined and (table.edit_link is defined or table.delete_link is defined) %}
+    {% endif %}
+
+    {%- if table.action_links is defined and table.action_links|length >0 %}
+        {#var grid_links = {{table.action_links|json_encode|raw}};#}
+        {%- set table_defs = table_defs|merge([{
+            'targets': '-1',
+            'title': '\'Actions\'',
+            'searchable': 'false',
+            'orderable': 'false',
+            'render': ("
+                function(data, type, full, meta) {
+                    var column_html = '';
+
+                    var addItemContent = function(key, item_content) {
+
+                        var html = '';
+                        if (item_content['html'] !== undefined) {
+                            /* populate html link */
+                            if (key == 'delete_link') {
+                              item_content['html'] =$(item_content['html']).attr('onclick','return deleteConf($(this))');
+                              item_content['html'] = item_content['html'].prop('outerHTML');
+                            }
+                            html += item_content['html'];
+
+                        }
+                        if (item_content['link'] !== undefined && item_content['text'] !== undefined && item_content['html'] === undefined) {
+                            /* populate plain link */
+                            html += '<a href=\"'+item_content['link']+'\" '+delConf+'>'+item_content['text']+'</a> ';
+                        }
+
+
+                        return html;
+                    }
+
+
+                    var grid_links = "~(table.action_links|json_encode|raw)~";
+                    for(var key in grid_links) {
+
+                        if (key != '__submenu__') {
+                            column_html += addItemContent(key, grid_links[key])
+                        }
+                        if (key == '__submenu__') {
+                            column_html += '<span class=\"dropdown\"><a href=\"#\" class=\"btn btn-sm btn-clean btn-icon btn-icon-md\" data-toggle=\"dropdown\" aria-expanded=\"true\"><i class=\"la la-ellipsis-h\"></i></a><div class=\"dropdown-menu ropdown-menu-right\">';
+                            var submenu = grid_links[key];
+                            for(var skey in submenu) {
+                                column_html += addItemContent(skey, submenu[skey])
+                            }
+                            column_html += '</div></span>';
+                        }
+
+
+
+                    }
+
+                    column_html=column_html.replace(/.?pk_field=%7B%7B%7Bpk_value%7D%7D%7D/g, '/'+full."~(table.pk_field)~");
+                    column_html=column_html.replace(/pk_field=%7B%7B%7Bpk_value%7D%7D%7D/g, '"~(table.pk_field)~"='+full."~(table.pk_field)~");
+                    column_html=column_html.replace(/\\/%7B%7B%7Bpk_value%7D%7D%7D/g, '/'+full."~(table.pk_field)~");
+
+                    var slug="~table.slug_field~";
+                    if(slug!=0){
+                        column_html=column_html.replace(/.?slug_field=%7B%7B%7Bslug%7D%7D%7D/g, '/'+full.slug);
+                        column_html=column_html.replace(/slug_field=%7B%7B%7Bslug%7D%7D%7D/g, 'slug='+full.slug);
+                        column_html=column_html.replace(/\\/%7B%7B%7Bslug%7D%7D%7D/g, '/'+full.slug);
+                    }
+
+
+
+                    return column_html;
+                }
+            ")
+        }]) %}
+    {% endif %}
+
+    {%- if table_defs|length > 0 %}
+        var colDefs_{{table.id}} = [
+                {% for def in table_defs %}
+                    {
+                        {% for k,val in def %}
+                        {% if 'custom_' in k %}
+                        {% else %}
+                        '{{k}}': {{val|raw}},
+                        {% endif %}
+                        {% endfor -%}
+                    },
+                {% endfor %}
+            ];
+    {% endif %}
+{% endmacro column_defs %}
+
+
+
+{% macro search_form(form) %}
+    {{ form_start(form, {attr:{class:'filter row'}}) }}
+        <div class="row">
+            {% for field in form if field.vars.name!='apply' and field.vars.name!='reset' and field.vars.attr['data-button'] is not defined %}
+                {% if not field.rendered %}
+                    {% if field.vars.part_of_range is defined %}
+                        <div class="col-lg-4 col-sm-12 input-group">
+                            <div class="col-form-label col-lg-5 col-sm-12 input-group date px-0">
+                                {{ form_widget(attribute(field.parent, field.vars.part_of_range_elements.start)) }}
+                            </div>
+                            <div class="col-lg-2 mx-0 my-auto text-center">
+                                {{ form_widget(attribute(field.parent, field.vars.part_of_range_elements.picker)) }}
+                            </div>
+                            <div class="col-form-label col-lg-5 col-sm-12 input-group date px-0">
+                                {{ form_widget(attribute(field.parent, field.vars.part_of_range_elements.end)) }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-form-label col-lg-2 col-md-6 col-sm-12">
+                            {{ form_widget(field) }}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            <div class="col text-right my-2">
+                {% for field in form if field.vars.name=='apply' or field.vars.name=='reset' or field.vars.attr['data-button'] is defined %}
+                    {% if not field.rendered %}
+                        {{ form_widget(field) }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    </form>
+{% endmacro search_form %}

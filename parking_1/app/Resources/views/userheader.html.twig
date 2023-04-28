@@ -1,0 +1,70 @@
+{% block userheader %}
+<div class="k-header__topbar-item k-header__topbar-item--user">
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    <div class="k-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px -2px">
+        <div class="k-header__topbar-user">
+            <span class="k-header__topbar-welcome k-hidden-mobile">Hi,</span>
+            <span class="k-header__topbar-username k-hidden-mobile">{{ app.user.username }}</span>
+            
+            <!--use below badge element instead the user avatar to display username's first letter(remove k-hidden class to display it) -->
+            <span class="k-badge k-badge--username k-badge--lg k-badge--brand k-hidden">A</span>
+        </div>
+    </div>
+    <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-md">
+        <div class="k-user-card k-margin-b-50 k-margin-b-30-tablet-and-mobile" style="background-image: url(assets/media/misc/head_bg_sm.jpg)">
+            <div class="k-user-card__wrapper">
+                <div class="k-user-card__pic">
+                    
+                </div>
+                <div class="k-user-card__details">
+                    <div class="k-user-card__name">{{ app.user.fullName }}</div>
+                </div>
+            </div>
+        </div>
+        <ul class="k-nav k-margin-b-10">
+            <li class="k-nav__item">
+                {#{% if app.user is defined %}
+                <a href="{{ path('profile_edit',{'id':app.user.info.id}) }}" class="k-nav__link">
+                    <span class="k-nav__link-icon"><i class="flaticon2-calendar-3"></i></span>
+                    <span class="k-nav__link-text">My Profile</span>
+                </a>
+                {% else %}
+                <a href="{{ path('profile_add',{'id':app.user.id}) }}" class="k-nav__link">
+                    <span class="k-nav__link-icon"><i class="flaticon2-plus"></i></span>
+                    <span class="k-nav__link-text">Setup my Profile</span>
+                </a>
+                {% endif %#}
+            </li>
+            
+            <!--
+            <li class="k-nav__item">
+                <a href="custom/user/profile-v1.html" class="k-nav__link">
+                    <span class="k-nav__link-icon"><i class="flaticon2-browser-2"></i></span>
+                    <span class="k-nav__link-text">My Tasks</span>
+                </a>
+            </li>
+            <li class="k-nav__item">
+                <a href="custom/user/profile-v1.html" class="k-nav__link">
+                    <span class="k-nav__link-icon"><i class="flaticon2-mail"></i></span>
+                    <span class="k-nav__link-text">Messages</span>
+                </a>
+            </li>
+            <li class="k-nav__item">
+                <a href="custom/user/profile-v1.html" class="k-nav__link">
+                    <span class="k-nav__link-icon"><i class="flaticon2-gear"></i></span>
+                    <span class="k-nav__link-text">Settings</span>
+                </a>
+            </li>
+        -->
+            <li class="k-nav__item k-nav__item--custom k-margin-t-15">
+                <a href="{{ path('fos_user_security_logout') }}" class="btn btn-outline-metal btn-hover-brand btn-upper btn-font-dark btn-sm btn-bold">{{'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            </li>
+        </ul>
+    </div>
+{% else %}
+    <a href="{{ path('fos_user_registration_register') }}"class="btn btn-pill btn-brand btn-elevate" style="margin: auto ; margin-right:15px" >{{ 'Sing_up'|trans({}, 'FOSUserBundle') }}</a>
+    <a href="{{ path('fos_user_security_login') }}"class="btn btn-pill btn-brand btn-elevate" style="margin: auto" >{{ 'Login'|trans({}, 'FOSUserBundle') }}</a>
+{% endif %}
+</div>
+{% endblock userheader %}

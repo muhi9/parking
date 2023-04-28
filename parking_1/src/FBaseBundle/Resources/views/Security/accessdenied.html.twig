@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('css/*.css') }}" rel="stylesheet" />
+{% endblock %}
+
+
+{% block title %}Access Denied{% endblock %}
+
+{% block content_body %}
+
+<!-- begin:: Content Body -->
+<div class="k-content__body    k-grid__item k-grid__item--fluid" id="k_content_body">
+    <div class="k-portlet k-portlet--mobile">
+        <div class="k-portlet__head">
+            <div class="k-portlet__head-label">
+                <h3 class="k-portlet__head-title">
+                     Access Denied
+                </h3> &nbsp;
+            </div>
+        </div>
+        <div class="k-portlet__body">
+            You don't have access to this module!
+        </div>
+    </div>
+</div>
+<!-- end:: Content Body -->
+
+{% endblock content_body %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

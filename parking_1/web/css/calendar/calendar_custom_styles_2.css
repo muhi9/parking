@@ -1,0 +1,425 @@
+body {
+    background: #fcfcfc;
+    color: #333;
+}
+.filters {
+  border-bottom: 2px solid #000;
+  padding-bottom: 1em;
+}
+.filters .periods button:hover, .filters .periods button.active {
+  background-color: #5867dd !important;
+  color: #fff !important;
+}
+
+.header_timeline {
+    padding: 0.5rem 1%;
+    top: 6em;
+    bottom: 0;
+    position: absolute;
+}
+
+.header_timeline > .d-flex {
+  height: 100%;
+}
+
+.header_timeline  .timeline {
+  height: 100%;
+  background: transparent;
+}
+
+
+.clock-line {
+    position: absolute;
+    z-index: 1;
+    border-left: #ff00004f solid 2px; /*#84859745 solid 2px;*/
+    top: 0em;
+    bottom: 0em;
+    pointer-events: none;
+    padding-left: 0;
+    background: #f9f9fc;
+}
+
+.clock-line span {
+    position: absolute;
+    top: -1.6em;
+    left: -1.5em;
+    border: red solid;
+    border: #ff00004f solid 2px;
+    background: #f9f9fc;
+}
+.clock-line-utc span {
+    left: -4.5em;
+    width: max-content;
+}
+
+#eventCalendar > .container-fluid:first-child .clock-line span  {
+    display: block;
+}
+
+#eventCalendar {
+    overflow: hidden    ;
+}
+
+#eventCalendar .container-fluid {
+    border-bottom: 1px solid #dedede;
+    padding: 1%;
+}
+.timeline-head{
+    margin-left: 25%;
+    z-index: 2;
+}
+
+.timeline-head > span {
+    font-size: 3rem;
+    white-space: nowrap;
+}
+.timeline-head > .collapse {
+    width: 25em;
+    flex: none;
+}
+
+.timeline-head input.form-control {
+  height: calc(2rem + 2px) !important;
+}
+
+.timeline-head .typeahead > a {
+  top: 0em;
+}
+.timeline-head .typeahead > img {
+  top: .35em;
+  max-width: 1.5em;
+  max-height: 1.5em;
+}
+
+.timeline-head .clearbut {
+  top: 0.2em !important;
+}
+
+.timeline {
+  margin-top: 1rem;
+  /* for labels */
+  margin-bottom: 1rem;
+  background: #F2F2F2;/*#c9f4f4;*/
+  height: 2rem;
+  position: relative;
+}
+
+.timeline__label {
+  width: 100px;
+  word-break: break-word;
+  /*text-transform: uppercase;*/
+}
+
+.timeline__box {
+  position: relative;
+  -webkit-transition: all 100ms ease;
+  transition: all 100ms ease;
+  cursor: pointer;
+}
+
+.timeline__period--day .timeline__box:not(.timeline__box--disabled):before {
+  content: '+';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: gray;
+  font-size: 0.75rem;
+  opacity: 0;
+  -webkit-transition: opacity .2s ease;
+  transition: opacity .2s ease;
+}
+
+.timeline__box:not(.timeline__box--disabled):hover {
+  /*background-color: #fff;*/
+  -webkit-box-shadow: inset 0 0 6px 0 rgba(0, 0, 0, 0.4);
+          box-shadow: inset 0 0 6px 0 rgba(0, 0, 0, 0.4);
+  border-color: transparent !important;
+}
+
+.timeline__box:not(.timeline__box--disabled):hover:before {
+  opacity: 1;
+}
+
+.timeline__box:first-of-type {
+  border-left-color: transparent;
+}
+
+.timeline__box--weekend {
+  background: #AEAAAA !important;
+}
+
+.timeline__box--weekend:hover {
+  background-color: #AEAAAA !important;
+}
+
+.timeline__box--round-hour {
+  border-left: 2px dotted rgba(0, 0, 0, 0.25);
+}
+
+.timeline__box--disabled:hover, .timeline__box--disabled {
+  /*background-color: red;*/
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: default;
+}
+
+.timeline__box--time {
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  padding: .25rem;
+  background-color: #ebffeb;
+  font-size: 0.75rem;
+}
+
+.timeline__box--disabled > .timeline__box--time {
+  background-color: #ffebeb;
+}
+
+.timeline__box-label {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -0.25rem);
+          transform: translate(-50%, -0.25rem);
+  font-size: .85rem;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.timeline__period--day .timeline__box-label {
+  left: 0;
+}
+
+.timeline__event {
+  display: block;
+  position: absolute !important;
+  top: 0;
+  bottom: 0;
+  border-left: 0.5px solid #000;
+  border-right: 0.5px solid #000;
+  opacity: .9;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  color: #000;
+  text-align: center;
+  font-size: 0.5vw;
+  line-height: 2rem;
+  z-index: 10;
+}
+
+.timeline__event.ui-state-highlight {
+  opacity: 1;
+}
+
+.timeline__event-wrapper {
+  width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline__event--day {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.start-date-select-datepicker {
+  position: relative;
+}
+
+#startDateSelectDatepicker {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  display: none;
+  z-index: 1;
+}
+
+.start-date-select-datepicker:hover #startDateSelectDatepicker {
+  display: block;
+}
+.popover {
+  position: relative;
+  max-width: 90em !important;
+  color: #999;
+}
+.popover b {
+  font-size: 12px;
+}
+.popover .totaltime b {
+    font-weight: 700;
+    background: #F3F3F3;
+    color: #666;
+    border: #bbb solid 1px;
+    border-radius: 3px;
+    padding: 2px;
+}
+.popover .from b, .popover .to b {
+    font-size: 12px;
+    font-weight: 700;
+    color: #666;
+    border: #bbb solid 1px;
+    border-radius: 3px;
+    padding: 2px 5px;
+}
+    
+.popover .type b {
+    border-radius: 3px;
+    padding: 2px 4px;
+}
+.popover .type b:not(.flight-type-rent) {
+  color: #fff;
+}
+
+
+.popover .aircraft {
+    height: 20px;
+    color: #999;
+    font-size: 11px;
+}
+.popover .aircraft b {
+    font-weight: 500;
+    color: #FFF;
+    background: #999;
+    border: 0;
+    padding: 3px;
+    border-radius: 3px;
+}
+.popover .crew b {
+    font-weight: 500;
+    color: #666;
+}
+.flight-col div {
+    margin: 0.25em 0;
+    padding: 0 0.25em;
+}
+.flight-col:not(.last) div {
+    width: auto;
+}
+.popover-head {
+  text-align: right;
+  line-height: 2rem;
+  border-bottom: 1px solid #000;
+  width: 100%;
+  display: inline-block;
+}
+.popover-info {
+  position: relative;
+  border: #999 solid 1px;
+}
+
+.popover-info .status {
+ /* width: 27%;
+  height: 21px;
+  font-size: 11px;
+  text-align: center;
+  border-radius: 3px 3px 0 0;
+  padding: 2px 4px;
+  position: absolute;
+  transform: translateX(21px) rotateZ(90deg);
+  transform-origin: left top;
+*/
+  position: absolute;
+  width: 20px;
+  height: 100%;
+  font-size: 11px;
+  text-align: center;
+  border-radius: 3px 3px 0 0;
+  padding: 2px 4px;
+  /*position: absolute;
+  top: 50px;
+  left: 50px;
+  transform: translateX(-100%);*/
+}
+.popover-info .status > b {
+    writing-mode: vertical-rl;
+    text-orientation: sideways-right;
+    transform: rotatez(180deg);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20%;
+   /* transform: rotate(-90deg);
+  transform-origin: right top;
+  text-align: right;*/
+}
+.popover-info table {
+  margin-left: 20px;
+  width: 97% !important;
+}
+.popover-info table, .popover-info th, .popover-info td  {
+  border:1px solid #000 !important;
+}
+.popover-info table tr:nth-child(-n+2) {
+  text-align: center;
+}
+.popover-info table tr:nth-child(-n+2) td {
+  vertical-align : middle;
+}
+.popover-info .briefing {
+  background-color: #ffd966;
+}
+.popover-info .flight-duration{
+  background-color: #8eaadb;
+}
+.flight-type-training {background:#1BC5BD;  font-weight: bold; color: #fff !important;}
+.flight-type-check {background:#EE9D01;  font-weight: bold;}
+.flight-type-intro {background:#187DE4;  font-weight: bold;}
+.flight-type-rent {background:#d7dae7;  font-weight: bold;}
+
+.popover-footer {
+  padding: .5rem .75rem;
+  border-top: 1px solid #ebebeb;
+  display: none;
+}
+.close-popover {
+  float: right;
+  /*border: 1px solid #ebedf2;*/
+  border-left: 1px solid #000;
+  /*border-bottom: 1px solid #000;*/
+  height: 2rem;
+/*  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  */
+  width: 2rem;
+  text-align: center;
+  line-height: 2rem;
+  cursor: pointer;
+  margin-left: 2rem;
+}
+.close-popover:hover{
+  background-color: red;
+  color: white;
+}
+.cancel-status, .check_in-status {
+  cursor: not-allowed;
+}
+.civil_twilight_begin, .civil_twilight_end {
+  top: -2em !important;
+}
+.removeTimeline {
+    width: min-content;
+    float: left;
+    position: absolute;
+    right: -1em;
+    cursor: pointer;
+}
+/*# sourceMappingURL=styles.css.map */

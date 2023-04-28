@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}{{'Home | Parking'|trans}}{% endblock %}
+
+
+{% block content_breadcrumb %}
+<a href="{{ path('homepage')}}" class="k-content__head-breadcrumb-link">{{'Home page'|trans }}</a>
+
+{% endblock content_breadcrumb %}
+
+{% block content_body %}
+
+<body>
+
+    <script>
+        var data = {{info|json_encode|raw}};
+    </script>
+    <div >
+        <p id = 'title-map'>Map of available parkings</p>
+    </div>
+
+    <div id="map"></div>
+
+    <div id="floating-panel">
+        <div id="map-canvas"></div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title" id="myModalLabel"></h4>
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+              </div>
+              <div class="modal-body">
+                    <div class="content"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <a href="/reservation" class=" btn btn-primary " id="reserve-btn"> 
+                Reserve a space
+                </a>
+              </div>
+            </div>
+        </div>
+    </div>
+        
+
+{% javascripts 
+    filter='uglifyjs2'
+    '@AppBundle/Resources/public/js/map.js'
+
+%}
+    <script type="text/javascript" src="{{ asset_url }}?r={{ver}}"></script>
+
+{% endjavascripts %}
+
+</body>
+
+
+
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    #title-map {
+        margin-left: 550px;
+        font-size: 26px;
+        font-weight: 500;
+    }
+    #map {
+        width: 100;
+        height: 550px;
+    }
+    .error {
+        border-block-color: red;
+    }
+    .modal-h{ 
+        font-size: large;
+        font-weight: bolder;
+    };
+</style>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtQ0Ni4CzQCM2FqbZBBv0bbGKanTLUshA&callback=initMap"></script>
+{% endblock %}

@@ -1,0 +1,6 @@
+<div class="k-grid__item k-grid__item--fluid k-grid k-grid--hor k-wrapper left-0 pl-0"  id="k_wrapper">
+<div id="k_header" class="k-header k-grid__item  k-header--fixed full-width-page left-0">
+	<a class="position-relative navbar-brand" tabindex="-1" href="{{ path('homepage', {'ref':'logo'}) }}">
+        {% image output="images/logo.png" '@FBaseBundle/Resources/public/images/logo.png'%}<img src="{{ asset_url }}" />{% endimage %} 
+    	<div class="logo_ver">{{ helper.rootDir() }} {{ ver }}</div>
+    </a>

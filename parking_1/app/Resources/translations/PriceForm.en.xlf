@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="en">
+  <file id="PriceForm.en">
+    <unit id="Hf3rOWC" name="input.date.placeholder">
+      <segment>
+        <source>input.date.placeholder</source>
+        <target>Date</target>
+      </segment>
+    </unit>
+    <unit id="sRcymNj" name="price_list">
+      <segment>
+        <source>price_list</source>
+        <target>Price list</target>
+      </segment>
+    </unit>
+    <unit id="KUIa.Cf" name="price_add">
+      <segment>
+        <source>price_add</source>
+        <target>Price add</target>
+      </segment>
+    </unit>
+    <unit id="62N5gUu" name="price.filter.price_type">
+      <segment>
+        <source>price.filter.price_type</source>
+        <target>Type</target>
+      </segment>
+    </unit>
+    <unit id="D7U742X" name="price.filter.from">
+      <segment>
+        <source>price.filter.from</source>
+        <target>Valid From</target>
+      </segment>
+    </unit>
+    <unit id="hjhypVN" name="price.filter.to">
+      <segment>
+        <source>price.filter.to</source>
+        <target>Valid To</target>
+      </segment>
+    </unit>
+    <unit id="yuiCONl" name="price.form.priceType">
+      <segment>
+        <source>price.form.priceType</source>
+        <target>Type</target>
+      </segment>
+    </unit>
+    <unit id="eRQmvIu" name="price.form.fromDate">
+      <segment>
+        <source>price.form.fromDate</source>
+        <target>Valid From</target>
+      </segment>
+    </unit>
+    <unit id="wr9Evbs" name="price.form.toDate">
+      <segment>
+        <source>price.form.toDate</source>
+        <target>Valid To</target>
+      </segment>
+    </unit>
+    <unit id="anZmcqb" name="price.form.price">
+      <segment>
+        <source>price.form.price</source>
+        <target>Price</target>
+      </segment>
+    </unit>
+    <unit id="7InxIyz" name="price.form.required">
+      <segment>
+        <source>price.form.required</source>
+        <target>Is required</target>
+      </segment>
+    </unit>
+    <unit id="j.ezH8Z" name="price.form.name">
+      <segment>
+        <source>price.form.name</source>
+        <target>Name</target>
+      </segment>
+    </unit>
+    <unit id="mYRKWu2" name="price.form.save">
+      <segment>
+        <source>price.form.save</source>
+        <target>Save</target>
+      </segment>
+    </unit>
+    <unit id="Y.TI1W4" name="price.form.error.pricetype">
+      <segment>
+        <source>price.form.error.pricetype</source>
+        <target>Type is not set!</target>
+      </segment>
+    </unit>
+    <unit id="H9T9Mwm" name="price.form.error.price">
+      <segment>
+        <source>price.form.error.price</source>
+        <target>Price is not set!</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

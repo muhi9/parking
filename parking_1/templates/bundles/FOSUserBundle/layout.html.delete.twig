@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+        <script>
+            WebFont.load({
+                google: {"families":["Poppins:300,400,500,600,700"]},
+                active: function() {
+                    sessionStorage.fonts = true;
+                }
+            });
+        </script>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+{% javascripts filter='uglifyjs2'
+    '%kernel.root_dir%/../web/assets/vendors/base/vendors.bundle.js'
+    output='js/base_theme0.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+
+
+
+{% javascripts filter='uglifyjs2' %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+{% stylesheets filter='css_url_rewrite,?uglifycss'
+    '%kernel.root_dir%/../web/assets/vendors/base/vendors.bundle.css'
+    '%kernel.root_dir%/../web/assets/demo/default/base/style.bundle.css'
+    '%kernel.root_dir%/../web/assets/demo/default/skins/header/base/light.css'
+    '%kernel.root_dir%/../web/assets/demo/default/skins/brand/navy.css'
+    '%kernel.root_dir%/../web/assets/demo/default/skins/aside/navy.css'
+    output='css/dist/theme_dist.css' %}
+<link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+    <base href="{{baseurl}}" />
+</head>
+
+<body class="k-login-v2--enabled k-header--fixed k-header-mobile--fixed k-aside--enabled k-aside--fixed">
+
+<div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+        </div>
+
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        <div>
+        <!-- begin:: Page -->
+
+        <!-- begin:: Header Mobile -->
+       
+<!-- begin:: Content Body -->
+		<div class="k-grid k-grid--ver k-grid--root k-page">
+			<div class="k-grid__item   k-grid__item--fluid k-grid  k-grid k-grid--hor k-login-v2" id="k_login_v2">
+
+				<!--begin::Item-->
+				<div class="k-grid__item  k-grid--hor">
+
+					<!--begin::Heade-->
+					<div class="k-login-v2__head">
+						<div class="k-login-v2__head-logo">
+							<a href="#" >
+								{% image output="images/logo.png" '@FBaseBundle/Resources/public/images/logo.png'%}<img class="#k_header_menu img" src="{{ asset_url }}" />{% endimage %} 
+							</a>
+						</div>
+						<div class="k-login-v2__head-signup">
+							<span>Don't have an account?</span>
+							<a href="#" class="k-link k-font-brand">Sign Up</a>
+						</div>
+					</div>
+
+					<!--begin::Head-->
+				</div>
+
+				<!--end::Item-->
+
+				<!--begin::Item-->
+				<div class="k-grid__item  k-grid  k-grid--ver  k-grid__item--fluid ">
+
+					<!--begin::Body-->
+					<div class="k-login-v2__body">
+
+						<!--begin::Wrapper-->
+						<div class="k-login-v2__body-wrapper">
+							<div class="k-login-v2__body-container">
+								<div class="k-login-v2__body-title">
+									<h3>Sign to Account</h3>
+								</div>
+								        {% block content_body %}
+								{% block fos_user_content %}
+								{% endblock fos_user_content %}
+								        {% endblock content_body %}
+        						<!--begin::Action-->
+								<div class="k-login-v2__body-action k-login-v2__body-action--brand">
+									<a href="#" class="k-link k-link--brand">
+										Forgot Password ?
+									</a>
+									<button type="submit" class="btn btn-pill btn-brand btn-elevate">Sign In</button>
+								</div>
+
+								<!--end::Action-->
+
+								<!--begin::Separator-->
+								<div class="k-login-v2__body-separator">
+									<div class="k-separator k-separator--space-lg  k-separator--border-solid"></div>
+								</div>
+
+								<!--end::Separator-->
+								<h3 class="k-login-v2__body-subtitle">Or sign with social account</h3>
+
+								{# <!--begin::Options-->
+								<div class="k-login-v2__body-options">
+									<a href="#" class="btn k-font-primary k-login-v2__body-option--primary">
+										<i class="fab fa-facebook-f k-font-primary"></i>
+										Facebook
+									</a>
+									<a href="#" class="btn k-font-info k-login-v2__body-option--info">
+										<i class="fab fa-twitter k-font-info"></i>
+										Twitter
+									</a>
+									<a href="#" class="btn k-font-warning k-login-v2__body-option--warning">
+										<i class="fab fa-google k-font-warning"></i>
+										Google
+									</a>
+								</div> #}
+
+								<!--end::Options-->
+							</div>
+						</div>
+</div>
+
+
+
+{#}
+        <!--begin::Global Theme Bundle -->
+        <script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+        <script src="assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+
+        <!--end::Global Theme Bundle -->
+
+        <!--begin::Page Vendors -->
+        <script src="assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+
+        <!--end::Page Vendors -->
+
+        <!--begin::Page Scripts -->
+        <script src="assets/app/scripts/custom/dashboard.js" type="text/javascript"></script>
+
+        <!--end::Page Scripts -->
+
+        <!--begin::Global App Bundle -->
+        <script src="assets/app/scripts/bundle/app.bundle.js" type="text/javascript"></script>
+#}
+<!-- begin::Global Config -->
+<script>
+    var KAppOptions = {
+        "colors": {
+            "state": {
+                "brand": "#5d78ff",
+                "metal": "#c4c5d6",
+                "light": "#ffffff",
+                "accent": "#00c5dc",
+                "primary": "#5867dd",
+                "success": "#34bfa3",
+                "info": "#36a3f7",
+                "warning": "#ffb822",
+                "danger": "#fd3995",
+                "focus": "#9816f4"
+            },
+            "base": {
+                "label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+                "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
+            }
+        }
+    };
+</script>
+<!-- end::Global Config -->
+{% javascripts filter='uglifyjs2'
+
+    '%kernel.root_dir%/../web/assets/demo/default/base/scripts.bundle.js'
+    '%kernel.root_dir%/../web/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js'
+    '%kernel.root_dir%/../web/assets/app/scripts/custom/dashboard.js'
+    '%kernel.root_dir%/../web/assets/app/scripts/bundle/app.bundle.js'
+    output='js/base_theme.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+{% block javascripts %}{% endblock %}
+</body>
+
+</html>

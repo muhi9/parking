@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/*.css') }}" rel="stylesheet" />
+{% endblock %}
+
+
+{% block title %}Edit profil{% endblock %}
+
+{% block content_body %}
+
+{% block fos_user_content %}
+{% include "@FOSUser/Profile/show_content.html.twig" %}
+{% endblock fos_user_content %}
+{% endblock content_body %}
+{% block content_breadcrumb %}
+            <a href="{{ path('homepage')}}" class="k-content__head-breadcrumb-link">Dashboards</a>
+            <span class="k-content__head-breadcrumb-separator"></span>
+            <span class="k-content__head-breadcrumb-separator"></span>
+            <span class="k-content__head-breadcrumb-link k-content__head-breadcrumb-link--active">Profil</span>
+         
+{% endblock content_breadcrumb %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

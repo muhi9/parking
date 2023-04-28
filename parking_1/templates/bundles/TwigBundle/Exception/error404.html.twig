@@ -1,0 +1,12 @@
+{% extends 'minimal.html.twig' %}
+{% block title %}{{'error.page.not.found'|trans}}{% endblock %}
+{% block content_body %}
+    <div class="text-center">
+        <h1>{{'404 Page not found'|trans}}</h1>
+        <p>
+            {{- exception.message|trans() -}}
+            <br />
+            <a href="{{ path('homepage') }}">{{'Return to the homepage'|trans}}</a>.
+        </p>
+    </div>
+{% endblock content_body %}

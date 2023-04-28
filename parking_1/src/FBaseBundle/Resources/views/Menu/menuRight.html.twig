@@ -1,0 +1,88 @@
+{% block menu_body %}
+{% set activeBundle = app.request.attributes.get("_controller")|split('\\') %}
+{% if activeBundle[0] is defined -%}
+			{% set active = activeBundle[0] %}
+{% endif %}
+
+<button class="k-aside-close " id="k_aside_close_btn"><i class="la la-close"></i></button>
+<div class="k-aside  k-aside--fixed     k-grid__item k-grid k-grid--desktop k-grid--hor-desktop right-0  pl-0 " id="k_aside">
+
+<!-- begin:: Aside -->
+<div class="k-aside__brand  k-grid__item " id="k_aside_brand">
+    <div class="k-aside__brand-logo">
+        <a class="position-relative" tabindex="-1" href="{{ path('homepage', {'ref':'logo'}) }}">
+            {% image output="images/logo.png"
+                '@FBaseBundle/Resources/public/images/logo.png'
+            %}
+                <img src="{{ asset_url }}" />
+            {% endimage %} 
+            <div class="logo_ver">{{ helper.rootDir() }} {{ ver }}</div>
+        </a>
+    </div>
+    <div class="k-aside__brand-tools">
+        <button class="k-aside__brand-aside-toggler k-aside__brand-aside-toggler--left" id="k_aside_toggler"><span></span></button>
+    </div>
+</div>
+
+
+  	
+ <div class="k-aside-menu-wrapper    k-grid__item k-grid__item--fluid" id="k_aside_menu_wrapper">
+    <div id="k_aside_menu" class="k-aside-menu " data-kmenu-vertical="1"  data-kmenu-scroll="1"  data-kmenu-dropdown-timeout="500">
+	{% if is_granted('ROLE_USER') -%}
+	 <ul class="k-menu__nav ">
+	 <li class="k-menu__item  k-menu__item--submenu k-menu__item--open k-menu__item--here" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
+	 	<a href="javascript:void(0);" class="k-menu__link k-menu__toggle">
+	 		<i class="k-menu__link-icon flaticon2-graphic"></i>
+	 		<span class="k-menu__link-text">{{'dashboards'|trans([],'menu')}}</span>
+	 		<i class="k-menu__ver-arrow la la-angle-right"></i>
+	 	</a>
+        <div class="k-menu__submenu ">
+        	<span class="k-menu__arrow"></span>
+	    	<ul class="k-menu__subnav ">
+	    	{% for bundle,menuItem in menu %}
+	    		{% set url = 'javascript:void(0);'%}
+	    		{% set activeClass = '' %}
+	    		{% set liClass = 'k-menu__item  k-menu__item--submenu  k-menu__item--here' %}
+	    		{% if menuItem.path is defined -%}
+	    			{% set url = path(menuItem.path, {'page': 'dash'}) %}
+	    			{% set liClass = 'k-menu__item'%}
+	    		{% endif %}
+
+	    		{% if bundle is defined and bundle==active  -%}
+	    			{% set activeClass = ' k-menu__item--open' %}
+	    		{% endif %} 
+	        	<li class="{{liClass}}{{activeClass}}" aria-haspopup="true">
+	        		<a href="{{url}}" class="k-menu__link k-menu__toggle">
+	        			<span class="k-menu__link-text">{{menuItem.label|trans([],'menu')}}</span></a>
+	        			{% if menuItem.sub is defined -%}
+	        				<div class="k-menu__submenu ">
+	        					<span class="k-menu__arrow"></span>
+	                             <ul class="k-menu__subnav">
+	                         		{% for label,subItem in menuItem.sub %}
+										<li class="k-menu__item  k-menu__item--active" aria-haspopup="true">
+			                                <a href="{{ path(subItem.path, {'page': 'dash'}) }}" class="k-menu__link ">
+			                                    <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
+			                                    <span class="k-menu__link-text">{{subItem.label|trans([],'menu')}}</span>
+			                                </a>
+	                                    </li>
+	                                {% endfor %}	
+	                            </ul>
+	                        </div>
+						{% endif -%}
+	        	</li>
+	    	{% endfor %}
+	    	</ul>
+    	</div>
+    </li>
+	</ul>
+	{% else %}
+		<script>top.location.href='{{path('fos_user_security_login')}}';</script>
+	{% endif %}
+    </div>
+ </div>
+</div>
+  <div class="k-grid__item k-grid__item--fluid k-grid k-grid--hor k-wrapper pl-0 pr-260" id="k_wrapper">
+                    <div id="k_header" class="k-header k-grid__item  k-header--fixed pl-0 left-0 ">
+
+ {% endblock menu_body %}
+ 

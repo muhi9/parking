@@ -1,0 +1,346 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}{{title|default()|trans({'%username%':form.vars.data.fullName}) }}{% endblock %}
+
+
+{% block content_body %}
+
+{% import _self as _this %}
+
+{% macro contacts_template(form) %}
+    <li>
+        <div class="row">
+            <div class="col-3">
+                {{ form_widget(form.contactType) }}
+                {{ form_errors(form.contactType) }}
+            </div>
+            <div class="col-9">
+                {{ form_widget(form.info1, {attr: {placeholder: 'users.form.contact.'~form.vars.contact_type~'.placeholder'}}) }}
+                {{ form_errors(form.info1) }}
+            </div>
+        </div>
+        <button type="button" class="btn btn-delete btn-elevate">x</button>
+    </li>
+{% endmacro %}
+{% macro phone_template(form) %}
+    <li>
+        <div class="row">
+            <div class="col-3">
+                {{ form_widget(form.contactType) }}
+                {{ form_errors(form.contactType) }}
+            </div>
+            <div class="col-9">
+                {{ form_widget(form.info1, {attr: {placeholder: 'users.form.contact.phone_number.placeholder'}}) }}
+                {{ form_errors(form.info1) }}
+            </div>
+            <script type="text/javascript">
+            inputMask('#'+'{{form.info1.vars.id}}');
+            </script>
+        </div>
+        <button type="button" class="btn btn-delete btn-elevate">x</button>
+    </li>
+{% endmacro %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="k-portlet">
+            <div class="k-portlet__head">
+                <div class="k-portlet__head-label">
+                    <h3 class="k-portlet__head-label">{{title|default()|trans({'%username%':form.vars.data.fullName}) }}</h3>
+                </div>
+            </div>
+            {{ form_start(form,{attr: {novalidate:'novalidate', 'enable-unsaved-changes-alert':true}})}}
+                <ul class="nav nav-tabs nav-tabs-line nav-tabs-line-success" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#tabs_basic" role="tab"><i class="la la-list"></i> {{ "user.form.tabs.basic"|trans }}</a>
+                    </li>
+                    {#% if form.vars.data.id is null or form.vars.data.personType.bnomkey=='person'%#}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs_login" role="tab"><i class="la la-key"></i> {{ "user.form.tabs.login"|trans }}</a>
+                    </li>
+                    {#%endif%#}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs_contacts" role="tab"><i class="la la-phone"></i> {{ "user.form.tabs.contacts"|trans }}</a>
+                    </li>
+                    {% if form.vars.data.id is null or form.vars.data.personType.bnomkey=='person'%}
+                        <li class="nav-item person">
+                            <a class="nav-link" data-toggle="tab" href="#tabs_documents" role="tab"><i class="la la-file-text"></i> {{ "user.form.tabs.documents"|trans }}</a>
+                        </li>
+                    {%endif%}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs_bank" role="tab"><i class="la la-cc-visa"></i> {{ "user.form.tabs.bank"|trans }}</a>
+                    </li>
+                    {% if form.vars.data.id is null or form.vars.data.personType.bnomkey=='person'%}
+                        <li class="nav-item person">
+                            <a class="nav-link" data-toggle="tab" href="#tabs_course" role="tab"><i class="la la-mortar-board"></i> {{ "user.form.tabs.course"|trans }}</a>
+                        </li>
+                    {% endif %}
+
+                    {% if form.vars.data.id is not null and form.vars.data.personType.bnomkey=='person' %}
+                        <li class="nav-item person">
+                            <a class="nav-link" data-toggle="tab" href="#tabs_licenses" role="tab"><i class="la la-file-text"></i> {{ "user.form.tabs.licenses"|trans }}</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs_other" role="tab"><i class="la la-signal"></i> {{ "user.form.tabs.other"|trans }}</a>
+                    </li>
+                    {% if form.vars.data.id is not empty %}
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs_availability" role="tab"><i class="la la-calendar"></i> {{ "user.form.tabs.availability"|trans }}</a>
+                        </li>
+                    {% endif %}
+                    
+                    {% if form.vars.data.id is not empty %}
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs_limits" role="tab"><i class="la la-calendar"></i> {{ "user.form.tabs.limits"|trans }}</a>
+                        </li>
+                    {% endif %}
+                    {% if form.vars.data.id is not empty and show_prices%}
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs_prices" role="tab"><i class="la la-money"></i> {{ "user.form.tabs.prices"|trans }}</a>
+                        </li>
+                    {% endif %}
+                    {% if form.vars.data.id is not empty%}
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs_invoices" role="tab"><i class="la la-comment"></i> {{ "user.form.tabs.invoices"|trans }}</a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+                {#BASIC INFO#}
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tabs_basic" role="tabpanel">
+
+                        {% if form.vars.data.id is not null %}
+                            {% set hidePerson = form.vars.data.personType.bnomkey=='company' %}
+                            {% set hideCompany = form.vars.data.personType.bnomkey=='person' %}
+                        {% else %}
+
+                            {{ form_row(form.personType) }}
+
+                            <hr />
+                            {% set hidePerson = false %}
+                            {% set hideCompany = false %}
+                        {% endif %}
+
+
+                        {% if hidePerson==false %}
+                            <div class="person">
+                                {% if permissions.isAdmin() %}
+                                    {{ form_row(form.personSubTypePerson) }}
+                                {% endif %}
+                                {{ form_row(form.firstName) }}
+                                {{ form_row(form.middleName) }}
+                                {{ form_row(form.lastName) }}
+                            </div>
+                        {% endif %}
+
+                        {{form_row(form.nickname)}}
+
+                        {% if permissions.isAdmin() and form.vars.data.id %}
+                            <hr/>
+                            {{ form_row(form.disabled) }}
+                        {% endif %}
+                    </div>
+                    {#LOGIN#}
+                    <div class="tab-pane" id="tabs_login" role="tabpanel">
+                        {% if form.vars.value.id is empty %}
+                            {{ form_widget(form.user) }}
+                            {{ form_errors(form.user) }}
+                        {% else %}
+                            {{ form_row(form.user) }}
+                        {% endif %}
+
+                        {{ form_row(form.images) }}
+                    </div>
+                    {#CONTACTS#}
+                    <div class="tab-pane" id="tabs_contacts" role="tabpanel">
+                        <ul class="nav nav-tabs nav-tabs-line nav-tabs-line-success" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs_contact" role="tab"><i class="la la-cog"></i> {{ "user.form.tabs.contacts"|trans }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs_emergency" role="tab"><i class="la la-info"></i> {{ "user.form.tabs.emergency.contacts"|trans }}</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs_contact" role="tabpanel">
+
+                                <div class="form-group row">
+                                    {{ form_label(form.phone, null, {'label_attr': {'class': 'col-form-label col-lg-3 col-sm-12'}}) }}
+                                    <div class="col-lg-9 col-md-9 col-sm-12">
+                                        <ul class="dynamic phone" data-index="{{form.phone.vars.data|length}}" data-prototype="{{ _this.phone_template(form.phone.vars.prototype)|e('html_attr') }}">
+                                            {% for i in form.phone %}
+                                                {{ _this.phone_template(i) }}
+                                            {% endfor %}
+                                            <li><button type="button" class="btn btn-secondary btn-elevate add">{{ "users.form.add_button_phone"|trans }}</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    {{ form_label(form.mail, null, {'label_attr': {'class': 'col-form-label col-lg-3 col-sm-12'}}) }}
+                                    <div class="col-lg-9 col-md-9 col-sm-12">
+                                        <ul class="dynamic mail" data-index="{{form.mail.vars.data|length}}" data-prototype="{{ _this.contacts_template(form.mail.vars.prototype)|e('html_attr') }}">
+                                            {% for i in form.mail %}
+                                                {{ _this.contacts_template(i) }}
+                                            {% endfor %}
+                                            <li><button type="button" class="btn btn-secondary btn-elevate add">{{ "users.form.add_button_mail"|trans }}</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    {{ form_label(form.url, null, {'label_attr': {'class': 'col-form-label col-lg-3 col-sm-12'}}) }}
+                                    <div class="col-lg-9 col-md-9 col-sm-12">
+                                        <ul class="dynamic url" data-index="{{form.url.vars.data|length}}" data-prototype="{{ _this.contacts_template(form.url.vars.prototype)|e('html_attr') }}">
+                                            {% for i in form.url %}
+                                                {{ _this.contacts_template(i) }}
+                                            {% endfor %}
+                                            <li><button type="button" class="btn btn-secondary btn-elevate add">{{ "users.form.add_button_url"|trans }}</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    {{ form_label(form.addresse, null, {'label_attr': {'class': 'col-form-label col-lg-3 col-sm-12'}}) }}
+                                    <div class="col-lg-9 col-md-9 col-sm-12">
+                                        <ul class="dynamic address" data-index="{{form.addresse.vars.data|length}}" data-prototype="{{ _this.address_template(form.addresse.vars.prototype)|e('html_attr') }}">
+                                            {% for i in form.addresse %}
+                                                {{ _this.address_template(i) }}
+                                            {% endfor %}
+                                            <li><button type="button" class="btn btn-secondary btn-elevate add">{{ "users.form.add_button_address"|trans }}</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% if hidePerson==false %}
+                                <div class="person">
+                                    <hr />
+                                    {#
+                                    {{ form_row(form.company) }}
+                                    #}
+                                    {{ form_row(form.parentOrganisation) }}
+                                    {{ form_row(form.departament_person) }}
+                                    {{ form_row(form.job_title_person  ) }}
+                                    <hr />
+                                </div>
+                                <div class="form-group row person">
+                                    {{ form_label(form.soc, null, {'label_attr': {'class': 'col-form-label col-lg-3 col-sm-12'}}) }}
+                                    <div class="col-lg-9 col-md-9 col-sm-12">
+                                        <ul class="dynamic soc" data-index="{{form.soc.vars.data|length}}" data-prototype="{{ _this.contacts_template(form.soc.vars.prototype)|e('html_attr') }}">
+                                            {% for i in form.soc %}
+                                                {{ _this.contacts_template(i) }}
+                                            {% endfor %}
+                                            <li><button type="button" class="btn btn-secondary btn-elevate add">{{ "users.form.add_button_soc"|trans }}</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="form-group row person">
+                                    {{ form_label(form.im, null, {'label_attr': {'class': 'col-form-label col-lg-3 col-sm-12'}}) }}
+                                    <div class="col-lg-9 col-md-9 col-sm-12">
+                                        <ul class="dynamic im" data-index="{{form.im.vars.data|length}}" data-prototype="{{ _this.contacts_template(form.im.vars.prototype)|e('html_attr') }}">
+                                            {% for i in form.im %}
+                                                {{ _this.contacts_template(i) }}
+                                            {% endfor %}
+                                            <li><button type="button" class="btn btn-secondary btn-elevate add">{{ "users.form.add_button_im"|trans }}</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if hideCompany==false %}
+                                <div class="form-group row company">
+                                    {{ form_label(form.call_sing, null, {'label_attr': {'class': 'col-form-label col-lg-3 col-sm-12'}}) }}
+                                    <div class="col-lg-9 col-md-9 col-sm-12">
+                                        <ul class="dynamic call_sing" data-index="{{form.call_sing.vars.data|length}}" data-prototype="{{ _this.contacts_template(form.call_sing.vars.prototype)|e('html_attr') }}">
+                                            {% for i in form.call_sing %}
+                                                {{ _this.contacts_template(i) }}
+                                            {% endfor %}
+                                            <li><button type="button" class="btn btn-secondary btn-elevate add">{{ "users.form.add_button_call_sing"|trans }}</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="tab-pane" id="tabs_emergency" role="tabpanel">
+                            {% if hidePerson==false %}
+                                <div class="form-group row person">
+                                    {{ form_label(form.emergency, null, {'label_attr': {'class': 'col-form-label col-lg-3 col-sm-12'}}) }}
+                                    <div class="col-lg-9 col-md-9 col-sm-12">
+                                        <ul class="dynamic emergency" data-index="{{form.emergency.vars.data|length}}" data-replace="__name__" data-prototype="{{ _this.emergency_template(form.emergency.vars.prototype)|e('html_attr') }}">
+                                            {% for key,i in form.emergency %}
+                                                {{ _this.emergency_template(i) }}
+                                            {% endfor %}
+                                            <li><button type="button" class="btn btn-secondary btn-elevate add">{{ "users.form.add_button_emergency"|trans }}</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  
+
+                {{ form_row(form._token) }}
+                {{ form_row(form.save) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+
+
+{% endblock content_body %}
+
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets '@FBaseBundle/Resources/public/css/dynamic_forms.css' filter='css_url_rewrite,?uglifycss' %}<link rel="stylesheet" href="{{ asset_url }}?r={{ver}}" />{% endstylesheets %}
+    {#% stylesheets '@UsersBundle/Resources/public/css/form.css' filter='css_url_rewrite,?uglifycss' %}<link rel="stylesheet" href="{{ asset_url }}" />{% endstylesheets %#}
+{% endblock %}
+
+
+{% block header_javascripts %}
+    {{ parent() }}
+    {% javascripts '@FBaseBundle/Resources/public/js/input-mask.js' filter='?uglifyjs2' %}<script src="{{ asset_url }}?r={{ver}}"></script>{% endjavascripts %}
+{% endblock %}
+{% block javascripts %}
+
+    {% javascripts '@FBaseBundle/Resources/public/js/dynamic_forms.js' filter='?uglifyjs2' %}<script src="{{ asset_url }}?r={{ver}}"></script>{% endjavascripts %}
+    {% javascripts '@base_nom_load_child'%}
+             <script src="{{ asset_url }}?r={{ver}}" type="text/javascript"></script>
+     {% endjavascripts %}
+    <script>
+
+    $(document).ready(function() {
+        $('#user_form_personType').change();
+    });
+var speed = 0;
+var nickname_label = $('[for="nickname"]').text();
+$('#user_form_personType').change(function() {
+    $('.company, .person').hide(speed).filter('.'+$('option:selected',this).data('key')).show(speed);
+    //$('#user_form_personSubTypePerson input, #user_form_personSubTypeCompany input').prop('checked',false);
+    //https://www.digiserver.net/jiga/browse/FMSKAB-236?focusedCommentId=10513&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-10513
+
+    if($(this).find('option:selected').data('key') == 'company') {
+        $('[for="user_form_nickname"]').text("{{'users.form.trademark'|trans}}");
+    }else{
+        $('[for="user_form_nickname"]').text("{{'users.form.nickname'|trans}}");
+    }
+});
+//}).change();#https://www.digiserver.net/jiga/browse/FMSKAB-236?focusedCommentId=10409&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-10409
+
+{% if form.vars.value.id is empty %}
+    $('#user_form_nickname').change(function() {
+        $('#user_form_user_username').val($(this).val());
+    });
+
+    $('#user_form_companyName').change(function() {
+        $('#user_form_user_username').val($(this).val());
+    });
+{% endif %}
+
+$('#user_form_user').change(function() {
+    $('.provider').parents('.form-group.row.validate')[this.value ? 'show' : 'hide'](speed);
+}).change();
+
+    </script>
+
+{% endblock %}

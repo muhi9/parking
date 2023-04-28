@@ -1,0 +1,7 @@
+.dynamic .row > .col-4 > .row {
+	margin-right: 0;
+}
+
+.dynamic .row > .col-4 > .row > .col-4 {
+	padding-right: 0;
+}

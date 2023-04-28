@@ -1,0 +1,30 @@
+table.examDates {
+    border: 1px solid #A09FF7;
+}
+table.examDates tr {
+    border-bottom: 1px solid #A09FF7;
+}
+table.examDates tr th {
+    text-align: center;
+    vertical-align: middle;
+    padding: 5px;
+    border-right: 1px solid #A09FF7;
+}
+table.examDates tr td {
+    padding: 10px;
+    text-align: center;
+    vertical-align: top;
+    border-right: 1px solid #A09FF7;
+}
+
+table.examDates .text_widget {
+    width: 195px;
+    margin: 0 auto;
+}
+
+table.examDates div.form-error ul li {
+    display: flex;
+}
+
+table.examDates th .k-switch,
+table.examDates th .k-switch label {margin:0 0 0 .5em;vertical-align:middle}

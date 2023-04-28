@@ -1,0 +1,72 @@
+.ui-timepick-wrapper {
+    overflow-y: auto;
+    max-height: 150px;
+    width: 6.5em;
+    background: #fff;
+    border: 1px solid #ddd;
+    -webkit-box-shadow:0 5px 10px rgba(0,0,0,0.2);
+    -moz-box-shadow:0 5px 10px rgba(0,0,0,0.2);
+    box-shadow:0 5px 10px rgba(0,0,0,0.2);
+    outline: none;
+    z-index: 10052;
+    margin: 0;
+}
+
+.ui-timepick-wrapper.ui-timepick-with-duration {
+    width: 13em;
+}
+
+.ui-timepick-wrapper.ui-timepick-with-duration.ui-timepick-step-30,
+.ui-timepick-wrapper.ui-timepick-with-duration.ui-timepick-step-60 {
+    width: 11em;
+}
+
+.ui-timepick-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ui-timepick-duration {
+    margin-left: 5px; color: #888;
+}
+
+.ui-timepick-list:hover .ui-timepick-duration {
+    color: #888;
+}
+
+.ui-timepick-list li {
+    padding: 3px 0 3px 5px;
+    cursor: pointer;
+    white-space: nowrap;
+    color: #000;
+    list-style: none;
+    margin: 0;
+}
+
+.ui-timepick-list:hover .ui-timepick-selected {
+    background: #fff; color: #000;
+}
+
+li.ui-timepick-selected,
+.ui-timepick-list li:hover,
+.ui-timepick-list .ui-timepick-selected:hover {
+    background: #1980EC; color: #fff;
+}
+
+li.ui-timepick-selected .ui-timepick-duration,
+.ui-timepick-list li:hover .ui-timepick-duration {
+    color: #ccc;
+}
+
+.ui-timepick-list li.ui-timepick-disabled,
+.ui-timepick-list li.ui-timepick-disabled:hover,
+.ui-timepick-list li.ui-timepick-selected.ui-timepick-disabled {
+    color: #888;
+    cursor: default;
+}
+
+.ui-timepick-list li.ui-timepick-disabled:hover,
+.ui-timepick-list li.ui-timepick-selected.ui-timepick-disabled {
+    background: #f2f2f2;
+}

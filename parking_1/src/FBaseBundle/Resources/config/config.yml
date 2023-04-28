@@ -1,0 +1,6 @@
+#doctrine:  
+#  orm:
+#    filters:
+#      basenoms_filter:
+#        class:   FBaseBundle\Filter\BaseNomsFilter
+#        enabled: true

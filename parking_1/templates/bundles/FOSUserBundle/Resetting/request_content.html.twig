@@ -1,0 +1,15 @@
+{% trans_default_domain 'messages' %}
+<title>{% block title %}FMS | Reset{% endblock %}</title>
+<div class="k-login-v2__body-title">
+        <h3>Reset password</h3>
+    </div>
+<form  class="k-login-v2__body-form k-form k-login-v2__body-form--border" action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+     <div class="form-group">
+       
+        <label for="username">{{ 'resetting.request.username'|trans }}</label>
+        <input type="text" class="form-control" id="username" name="username" required="required" />
+    </div>
+     <div class="form-group">
+        <input type="submit" class="btn btn-pill btn-brand btn-elevate" value="{{ 'resetting.request.submit'|trans }}" />
+    </div>
+</form>

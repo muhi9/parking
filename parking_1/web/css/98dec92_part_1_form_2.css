@@ -1,0 +1,46 @@
+.landings .row > div {
+	padding-right: 0;
+}
+
+.form-control.day, .form-control.night {background:no-repeat 8px center;padding-left:40px}
+.form-control.night {background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABrElEQVR42rXWSyhEURzH8TMrUh6lyIINSkh5bWwtkEgoSSwtrJTXQpEsKWUpjQ07Ka+kLESipMROyQYLKQmJSXz/nXPrNt3HceNXn2a4Z+7/zJnzuDFlnyxUoQCpeMI2XoM+FAu5qVxvxwCqcY4bZKMBtbiIWqAUcfN+Blv4MH/vYs/8P7SHXmk2Nx/HYtK1esyjAl9RCsgNltGKU4/ra+bbxJVFkgvk4QxdOPRon4IHpX/o5ygFVnCNCZ/2NVhQejZZxV2g2PS6EG8+7TvQjc4oBabNEIwGtO9BI3qjFDjBiPIeeyct6Devvyogry/IDRgeSYnSM6jotwXScYtMi/b3qFN6Rf95AYksMtmHJv9jiJQZniOU4dG2gMTmR3Yyi3ylF6R1AZtp6kS26wOlt+sp2wI2C82dHKV31H0M4zOsgCRsq0iOTIol07kx7OA7qEDYZueXNtMpmY0bOMaqVwFJ2HYdlEqlt/E0lCMR5cDxSwbmlD5Gm3Dn9w2cBB2Z7sja6cMgNjGkXJMk6qH/rvRThnRC1sO66f2l1w1sk/zYIifaldJPFQm/D/0AvUFdGbnPYuoAAAAASUVORK5CYII=)}
+.form-control.day {background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABF0lEQVR42mNkoDFgJFE9C5T+QysLqqF0K60saIbStZRYwAHEckB8i0QL1ID4ERD/IGQBSOFRII4A4r1ocmFQehWauDMQrwBia3SH4QoimIZwIN5HIBScgHglDgfhjQMnqItAwaIKxLlAbA6VOwnEk4H4NjS4juJyCDGRHALE04F4BhDvhIq5A3EGEGcC8Rp8mglZAHL5MaiB59DkjKAWWkF9QpYFk4D4IwPuZNkExAJAnEfIAlAOLWeAJFEQuMwASSmgsC4G4iM49NsAcS8DJG5AKUwXKg5Kqp1A/IduFtA8iHABmkcyCMCSKQjvgoq5MUCSKEXJ1AnquhYGGmQ0mhYVNC/saF5c4wNUqXDwAZpXmTSv9EkGAG19UhmyeVYaAAAAAElFTkSuQmCC)}
+
+.details {
+	padding-left: 2em;
+}
+.crew_user_info span {
+    margin-right: 0.5em;
+}
+.hide {
+	display: none;
+}
+
+.price.row {
+	padding: 1em;
+}
+.price.row .col-2 {
+	text-align: center;
+}
+#flight_tabs_prices .content label {
+	text-align: left;
+}
+.dynamic_exercise_elements li {list-style: none;}
+
+.excercise-element {
+    padding: 20px 30px;
+}
+
+.excercise-element.new { background: #efef; }
+.excercise-element.odd { background: #F3F6F9; }
+.excercise-element.even { background: #F8F8F8; }
+
+.excercise-element label.col-form-label {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+
+.k-form button.btn[type=submit], .k-form input.btn[type=submit] {
+	white-space: nowrap;
+}

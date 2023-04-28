@@ -1,0 +1,17 @@
+parameters:
+  menuView: menuTop
+  menu:
+    Profile:
+      label: menu.profile
+      path: user
+      rights: admin/operator/client
+
+    
+    Parking:
+      label: menu.parking
+      path: parking
+
+    Reservation:
+      label: Reservations
+      path: reservation
+      rights: admin/operator/su  

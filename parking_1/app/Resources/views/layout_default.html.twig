@@ -1,0 +1,402 @@
+{% trans_default_domain 'messages' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+        <script>
+            var siteUrl = '{{baseurl}}';
+            var i18n = JSON.parse('{{i18n|json_encode|raw}}');
+            WebFont.load({
+                google: {"families":["Poppins:300,400,500,600,700"]},
+                active: function() {
+                    sessionStorage.fonts = true;
+                }
+            });
+            //var siteUrl = $(document).attr('baseURI');
+          
+        </script>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+<script>
+{#% spaceless %}
+    var env = '{{app.environment}}';
+    var profileId = {{app.user.id}};
+{% endspaceless %#}
+</script>
+
+{% javascripts filter='uglifyjs2'
+    '@FBaseBundle/Resources/public/plugins/jquery/jquery.js'
+    '@FBaseBundle/Resources/public/plugins/jquery/jquery-ui.autocomplete.min.js'
+    '@FBaseBundle/Resources/public/plugins/bootstrap/pooper.js'
+    '@FBaseBundle/Resources/public/plugins/bootstrap/bootstrap.min.js'
+    '@FBaseBundle/Resources/public/plugins/js-cookie.js'
+    '@FBaseBundle/Resources/public/plugins/moment/moment.min.js'
+    '@FBaseBundle/Resources/public/plugins/bootstrap/tooltip.min.js'
+    '@FBaseBundle/Resources/public/plugins/perfect-scrollbar/perfect-scrollbar.js'
+    '@FBaseBundle/Resources/public/plugins/wNumb.js'
+    '@FBaseBundle/Resources/public/plugins/jquery/jquery.form.min.js'
+    '@FBaseBundle/Resources/public/plugins/jquery/jquery.block.js'
+    '@FBaseBundle/Resources/public/plugins/bootstrap/datepicker.min.js'
+    '@FBaseBundle/Resources/public/plugins/bootstrap/timepicker.js'
+    '@FBaseBundle/Resources/public/plugins/bootstrap/touchspin.js'
+    '@FBaseBundle/Resources/public/plugins/jquery/maxlength.js'
+    '@FBaseBundle/Resources/public/plugins/jquery/multiselectsplitter.js'
+    '@FBaseBundle/Resources/public/plugins/bootstrap/bootstrap-select.js'
+    '@FBaseBundle/Resources/public/plugins/handlebars.js'
+    '@FBaseBundle/Resources/public/plugins/inputmask/jquery.inputmask.bundle.js'
+    '@FBaseBundle/Resources/public/plugins/inputmask/inputmask.phone.extensions.js'
+    '@FBaseBundle/Resources/public/plugins/nouislider.js'
+    '@FBaseBundle/Resources/public/plugins/owl.carousel.js'
+    '@FBaseBundle/Resources/public/plugins/autosize.js'
+    '@FBaseBundle/Resources/public/plugins/blockui/jquery.blockui.js'
+    '@FBaseBundle/Resources/public/plugins/jquery/jquery-ui.autocomplete.min.js'
+    '@FBaseBundle/Resources/public/plugins/datatables/datatables.min.js'
+   output='js/base_vendors.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}?r={{ver}}"></script>
+{% endjavascripts %}
+
+
+{% javascripts filter='uglifyjs2'
+    '@FBaseBundle/Resources/public/plugins/sticky.min.js'
+    '@FBaseBundle/Resources/public/plugins/block-loader.js'
+   output='js/custom_vendors.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}?r={{ver}}"></script>
+{% endjavascripts %}
+
+
+{% javascripts filter='uglifyjs2'
+    '%kernel.root_dir%/../web/assets/vendors/base/vendors.bundle.js'
+   output='js/big_vendor.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}?r={{ver}}"></script>
+{% endjavascripts %}
+
+
+{% javascripts filter='uglifyjs2' %}
+<script type="text/javascript" src="{{ asset_url }}?r={{ver}}"></script>
+{% endjavascripts %}
+{% javascripts '%kernel.root_dir%/Resources/public/js/main.js'
+    '@FBaseBundle/Resources/public/js/toastr.min.js'
+    '@FBaseBundle/Resources/public/js/sysmsg.js'
+    filter='?uglifyjs2'%}
+        <script src="{{ asset_url }}?r={{ver}}" type="text/javascript"></script>
+{% endjavascripts %}
+{% block header_javascripts %}{% endblock %}
+
+{#
+    '%kernel.root_dir%/../web/assets/demo/default/skins/aside/navy.css'
+#}
+
+{% stylesheets filter='css_url_rewrite,?uglifycss'
+    '@FBaseBundle/Resources/public/plugins/perfect-scrollbar/perfect-scrollbar.css'
+    '@FBaseBundle/Resources/public/plugins/bootstrap/datepicker.css'
+    '@FBaseBundle/Resources/public/plugins/bootstrap/datetimepicker.css'
+    '@FBaseBundle/Resources/public/plugins/bootstrap/timepicker.css'
+    '@FBaseBundle/Resources/public/plugins/bootstrap/touchspin.css'
+    '@FBaseBundle/Resources/public/plugins/bootstrap/bootstrap-select.css'
+    '@FBaseBundle/Resources/public/plugins/nouislider.css'
+    '@FBaseBundle/Resources/public/plugins/owl.carousel.css'
+    '@FBaseBundle/Resources/public/plugins/jquery/jquery-ui.min.css'
+    '%kernel.root_dir%/../web/assets/vendors/base/vendors.bundle.css'
+    '%kernel.root_dir%/../web/assets/demo/default/base/style.bundle.css'
+    '%kernel.root_dir%/../web/assets/demo/default/skins/header/base/light.css'
+    '%kernel.root_dir%/../web/assets/demo/default/skins/brand/navy.css'
+    '%kernel.root_dir%/../web/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css'
+    '%kernel.root_dir%/../src/FBaseBundle/Resources/public/css/timepicker.css'
+    '%kernel.root_dir%/../src/FBaseBundle/Resources/public/css/toastr.min.css'
+    '%kernel.root_dir%/../src/FBaseBundle/Resources/public/css/main.css'
+    '%kernel.root_dir%/../app/Resources/public/css/main.css'
+    '@FBaseBundle/Resources/public/plugins/datatables/datatables.min.css'
+    output='css/dist/theme_dist.css' %}
+<link rel="stylesheet" href="{{ asset_url }}?r={{ver}}" />
+{% endstylesheets %}
+<base href="{{baseurl}}" />
+</head>
+
+    <body class="k-header--fixed k-header-mobile--fixed k-aside--enabled k-aside--fixed">
+        <!-- begin:: Page -->
+
+        <!-- begin:: Header Mobile -->
+        <div id="k_header_mobile" class="k-header-mobile  k-header-mobile--fixed ">
+            <div class="k-header-mobile__logo">
+                <a class="position-relative"  tabindex="-1"  href="{{ path('homepage', {'ref':'logo'}) }}">
+                    {% image output="images/logo.png"
+                        '@FBaseBundle/Resources/public/images/logo.png'
+                    %}
+                        <img src="{{ asset_url }}" />
+                    {% endimage %}
+                    <div class="logo_ver">{{ helper.rootDir() }} {{ ver }}</div>
+                </a>
+            </div>
+            <div class="k-header-mobile__toolbar">
+                {#<button class="k-header-mobile__toolbar-toggler k-header-mobile__toolbar-toggler--left" id="k_aside_mobile_toggler"><span></span></button>#}
+                <button class="k-header-mobile__toolbar-toggler" id="k_header_mobile_toggler"><span></span></button>
+                <button class="k-header-mobile__toolbar-topbar-toggler" id="k_header_mobile_topbar_toggler"><i class="flaticon-more"></i></button>
+            </div>
+        </div>
+
+        <!-- end:: Header Mobile -->
+        <div class="k-grid k-grid--hor k-grid--root">
+            <div class="k-grid__item k-grid__item--fluid k-grid k-grid--ver k-page">
+
+                <!-- begin:: Aside -->
+
+                    {{menu.menuBuilder()|raw}}
+                    <!-- end: Header Menu -->
+                        <!-- begin:: Header Topbar -->
+                        <div class="k-header__topbar">
+
+                            {#
+                            <!--begin: Full screen button -->
+                            <div class="k-header__topbar-item dropdown">
+                                <div class="k-header__topbar-wrapper" id="toggle_full_screen">
+                                    <span class="k-header__topbar-icon"><i class="flaticon2-expand"></i></span>
+                                </div>
+                            </div>
+                            <script>
+                                $(function(){ _fullscreen.onload(); })
+                                if (_fullscreen.available()) {
+                                    $('#toggle_full_screen').click(function() {
+                                        _fullscreen.toggle();
+                                    })
+                                } else {
+                                    $('#toggle_full_screen').parent().remove();
+                                }
+                            </script>
+                            <!--end: Full screen button -->
+                            #}
+
+                            <!--begin: Search --
+                            <div class="k-header__topbar-item k-header__topbar-item--search dropdown">
+                                <div class="k-header__topbar-wrapper" id="k_offcanvas_toolbar_search_toggler_btn">
+                                    <span class="k-header__topbar-icon"><i class="flaticon2-search-1"></i></span>
+                                </div>
+                            </div>
+
+                            !--end: Search -->
+            <!--begin: Duty -->
+           
+            <!--end: Duty -->
+                            
+
+                            <!--begin: Quick actions --
+                            <div class="k-header__topbar-item dropdown">
+                                <div class="k-header__topbar-wrapper" id="k_offcanvas_toolbar_quick_actions_toggler_btn">
+                                    <span class="k-header__topbar-icon"><i class="flaticon2-gear"></i></span>
+                                </div>
+                            </div>
+
+                            !--end: Quick actions -->
+
+                            <!--begin: Bugs -->
+                            
+                            <!--end: Bugs -->
+
+                            <!--begin: User bar -->
+                            {% block userheader %}{% endblock %}
+                            {% include('userheader.html.twig') %}
+
+                            <!--end: User bar -->
+
+                            {# <!--begin: Language bar -->
+                            <div class="k-header__topbar-item k-header__topbar-item--langs">
+                                <div class="k-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px -2px">
+                                    <span class="k-header__topbar-icon">
+                                        <img class="" src="/assets/media/flags/020-flag.svg" alt="" />
+                                    </span>
+                                </div>
+                                <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround">
+                                    <ul class="k-nav k-margin-t-10 k-margin-b-10">
+                                        <li class="k-nav__item k-nav__item--active">
+                                            <a href="#" class="k-nav__link">
+                                                <span class="k-nav__link-icon"><img src="/assets/media/flags/020-flag.svg" alt="" /></span>
+                                                <span class="k-nav__link-text">English</span>
+                                            </a>
+                                        </li>
+                                        <li class="k-nav__item">
+                                            <a href="#" class="k-nav__link">
+                                                <span class="k-nav__link-icon"><img src="/assets/media/flags/016-spain.svg" alt="" /></span>
+                                                <span class="k-nav__link-text">Spanish</span>
+                                            </a>
+                                        </li>
+                                        <li class="k-nav__item">
+                                            <a href="#" class="k-nav__link">
+                                                <span class="k-nav__link-icon"><img src="/assets/media/flags/017-germany.svg" alt="" /></span>
+                                                <span class="k-nav__link-text">German</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div> #}
+
+                            <!--end: Language bar -->
+
+                            
+
+                            <!--begin: Quick panel toggler --
+                            <div class="k-header__topbar-item k-header__topbar-item--quick-panel" data-toggle="k-tooltip" title="Quick panel" data-placement="right">
+                                <span class="k-header__topbar-icon" id="k_quick_panel_toggler_btn">
+                                    <i class="flaticon2-grids"></i>
+                                </span>
+                            </div>
+
+                            !--end: Quick panel toggler -->
+                        </div>
+
+                        <!-- end:: Header Topbar -->
+                    </div>
+
+                    <!-- end:: Header -->
+
+                    <!-- begin:: Content -->
+                    <div class="k-content k-grid__item k-grid__item--fluid k-grid k-grid--hor " id="k_content">
+
+
+<!-- begin:: Content Head -->
+{% if _layout_hide_breadcrumbs is not defined or not _layout_hide_breadcrumbs %}
+<div class="k-content__head k-grid__item">
+<div class="k-content__head-main">
+        <!--<h3 class="k-content__head-title">Dashboard</h3>-->
+        <div class="k-content__head-breadcrumbs">
+        </div>
+    </div>
+    
+
+    <!--begin: headerClock-->
+    <div class="headerClock text-center"><span></span></div>
+    <script>headerClock();</script>
+    <!--end: headerClock-->
+
+</div>
+{% endif %}
+<!-- end:: Content Head -->
+
+<!-- begin:: Content Body -->
+<div class="k-content__body k-grid__item k-grid__item--fluid" id="k_content_body">
+
+{% if(errors is defined and errors is not empty)%}
+  {% for e in errors%}
+  <div class="alert alert-warning" role="alert">
+              <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                <div class="alert-text">{{e|trans}}</div>
+            </div>
+  {%endfor%}
+{% endif %}
+        {% block content_body %}{% endblock content_body %}
+</div>
+<!-- end:: Content Body -->
+
+
+
+
+                    </div>
+
+                    <!-- end:: Content -->
+
+                    <!-- begin:: Footer -->
+                    <div class="k-footer    k-grid__item k-grid k-grid--desktop k-grid--ver-desktop">
+                        {# <div class="k-footer__copyright">
+                            {{ "now"|date("Y") }}&nbsp;&copy;&nbsp;P
+                        </div> #}
+                        {#
+                        <div class="k-footer__menu">
+                            <a href="http://keenthemes.com/keen" target="_blank" class="k-footer__menu-link k-link">About</a>
+                            <a href="http://keenthemes.com/keen" target="_blank" class="k-footer__menu-link k-link">Team</a>
+                            <a href="http://keenthemes.com/keen" target="_blank" class="k-footer__menu-link k-link">Contact</a>
+                        </div>
+                        #}
+                    </div>
+
+                    <!-- end:: Footer -->
+                </div>
+            </div>
+        </div>
+
+        <!-- end:: Page -->
+
+
+        <!-- begin::Scrolltop -->
+        <div class="page-scrolltop">
+            <i class="la la-arrow-up"></i>
+        </div>
+        <script>pageScrollTo(".page-scrolltop", {toggleClass:'page-scrolltop--on'});</script>
+        <div class="page-scrollbottom">
+            <i class="la la-arrow-down"></i>
+        </div>
+        <script>pageScrollTo(".page-scrollbottom", {toggleClass:'page-scrollbottom--on', scrollTo:'bottom'});</script>
+
+        <!-- end::Scrolltop -->
+
+        
+<!--begin: Bugs -->
+
+<!--end: Bugs -->
+
+
+<!-- begin::Global Config -->
+<script>
+    var KAppOptions = {
+        "colors": {
+            "state": {
+                "brand": "#5d78ff",
+                "metal": "#c4c5d6",
+                "light": "#ffffff",
+                "accent": "#00c5dc",
+                "primary": "#5867dd",
+                "success": "#34bfa3",
+                "info": "#36a3f7",
+                "warning": "#ffb822",
+                "danger": "#fd3995",
+                "focus": "#9816f4"
+            },
+            "base": {
+                "label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+                "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
+            }
+        }
+    };
+</script>
+<!-- end::Global Config -->
+{% javascripts filter='uglifyjs2'
+    '%kernel.root_dir%/../web/assets/demo/default/base/scripts.bundle.js'
+    '%kernel.root_dir%/../web/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js'
+    '%kernel.root_dir%/../web/assets/app/scripts/custom/dashboard.js'
+    '%kernel.root_dir%/../web/assets/app/scripts/bundle/app.bundle.js'
+    '%kernel.root_dir%/../web/assets/demo/default/custom/components/forms/widgets/input-mask.js'
+    output='js/base_theme.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}?r={{ver}}"></script>
+{% endjavascripts %}
+
+{% javascripts filter='uglifyjs2'
+    '@FBaseBundle/Resources/public/js/grid.js'
+    '@FBaseBundle/Resources/public/js/autocomplete.js'
+    '@FBaseBundle/Resources/public/js/formValidation.js'
+    '@FBaseBundle/Resources/public/js/timepicker.js'
+    '@FBaseBundle/Resources/public/js/main.js'
+%}
+    {#output="js/basebundle.js"#}
+<script src="{{ asset_url }}?r={{ver}}" type="text/javascript"></script>
+{% endjavascripts %}
+
+{% block javascripts %}{% endblock %}
+
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <script>
+            $(function() {
+                sysMsg.show({'title':'{{label}} received','body':'{{message|raw}}', 'severity':'{{label}}'});
+            })
+        </script>
+    {% endfor %}
+{% endfor %}
+
+</body>
+</html>

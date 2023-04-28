@@ -1,0 +1,13 @@
+dashboards: Dashboards
+menu.dashboard: Dashboard
+menu.booking: Booking
+menu.nomenclatures: Nomenclatures
+menu.nomenclatures_tree: Nomenclatures Tree
+menu.language: Language
+menu.users: Users
+menu.profile: Profile
+menu.settings: 'System Settings'
+menu.system: <span style="font-size:1.8em"><i class="la la-cog icon-md"></i></span>
+menu.documents: Documents
+menu.parking: Parkings
+form.country.name.notempty: "Name can not be empty"

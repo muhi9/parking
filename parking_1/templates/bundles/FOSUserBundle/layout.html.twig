@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<!-- begin::Head -->
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="User login example">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<!--begin::Web font -->
+		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+		<script>
+			WebFont.load({
+                google: {"families":["Poppins:300,400,500,600,700"]},
+                active: function() {
+                    sessionStorage.fonts = true;
+                }
+            });
+             var siteUrl = '{{baseurl}}';
+        </script>
+
+		<!--end::Web font -->
+
+		<!--begin::Page Custom Styles -->
+		<link href="{{baseurl}}assets/custom/user/login-v2.css" rel="stylesheet" type="text/css" />
+
+		<!--end::Page Custom Styles -->
+
+		<!--begin:: Global Mandatory Vendors -->
+		<link href="{{baseurl}}assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
+		<!--end:: Global Mandatory Vendors -->
+
+		<!--begin::Global Theme Styles -->
+		<link href="{{baseurl}}assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
+
+		<!--end::Global Theme Styles -->
+		<link href="{{baseurl}}bundles/fbase/css/login.css" rel="stylesheet" type="text/css" />
+
+		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+	</head>
+
+	<!-- end::Head -->
+
+	<!-- begin::Body -->
+	<body class="k-login-v2--enabled k-header--fixed k-header-mobile--fixed k-aside--enabled k-aside--fixed">
+
+		<!-- begin:: Page -->
+		<div class="k-grid k-grid--ver k-grid--root k-page">
+			<div class="k-grid__item   k-grid__item--fluid k-grid  k-grid k-grid--hor k-login-v2" id="k_login_v2">
+
+				<!--begin::Item-->
+				<div class="k-grid__item  k-grid--hor">
+
+					<!--begin::Heade-->
+					<div class="k-login-v2__head">
+						<div class="k-login-v2__head-logo">
+							<a href="{{ path('homepage', {'ref':'logo'}) }}">
+								{% image output="images/logo.png" '@FBaseBundle/Resources/public/images/logo.png'%}<img src="{{ asset_url }}" width="14%"/>{% endimage %} 
+							</a>
+						</div>
+						
+					</div>
+
+					<!--begin::Head-->
+				</div>
+
+				<!--end::Item-->
+
+				<!--begin::Item-->
+				<div class="k-grid__item  k-grid  k-grid--ver  k-grid__item--fluid ">
+
+					<!--begin::Body-->
+					<div class="k-login-v2__body">
+
+						<!--begin::Wrapper-->
+						<div class="k-login-v2__body-wrapper w-auto mx-auto">
+							<div class="k-login-v2__body-container">
+								
+								{% block fos_user_content %}
+								{% endblock fos_user_content %}
+								
+								<!--begin::Separator-->
+								<div class="k-login-v2__body-separator">
+									<div style=" text-align: center;">
+										{% if app.request.attributes.get('_route') == 'fos_user_registration_register' %}
+											<span>{{'security.login.have_account'|trans }}</span>
+											<a href="{{ path('fos_user_security_login') }}" class="k-link k-font-brand">{{'security.login.login'|trans }}</a>
+										{% else %}
+											<span> {{'security.login.donthave_account'|trans }}</span>
+											<a href="{{ path('fos_user_registration_register') }}" class="k-link k-font-brand">{{'security.login.sing_up'|trans }}</a>
+										{% endif %}
+									</div>
+								</div>
+								{#
+								<!--end::Separator-->
+								<h3 class="k-login-v2__body-subtitle">{{'security.login.social'|trans }}</h3>
+
+								<!--begin::Options-->
+								<div class="k-login-v2__body-options">
+									<a href="#" class="btn k-font-primary k-login-v2__body-option--primary">
+										<i class="fab fa-facebook-f k-font-primary"></i>
+										{{'security.login.facebook'|trans }}
+									</a>
+									<a href="#" class="btn k-font-info k-login-v2__body-option--info">
+										<i class="fab fa-twitter k-font-info"></i>
+										{{'security.login.twitter'|trans }}
+									</a>
+									<a href="#" class="btn k-font-warning k-login-v2__body-option--warning">
+										<i class="fab fa-google k-font-warning"></i>
+										{{'security.login.google'|trans }}
+									</a>
+								</div>
+								#}
+								<!--end::Options-->
+							</div>
+						</div>
+
+						<!--end::Wrapper-->
+						{#
+						<!--begin::Pic-->
+						<div class="loginRside k-login-v2__body-pic">
+					    	<img  src="{{ asset('bundles/fbase/images/login-fly3.jpg')}}" />
+                    	</div> 
+						#}
+						<!--begin::Pic-->
+					</div>
+
+					<!--begin::Body-->
+				</div>
+
+				{# <div class="k-grid__item">
+					<div class="k-login-v2__footer">
+						<div class="k-login-v2__footer-link">
+							<a href="#" class="k-link k-font-brand">{{'label.privacy'|trans }}</a>
+							<a href="#" class="k-link k-font-brand">{{'label.legal'|trans }}</a>
+							<a href="#" class="k-link k-font-brand">{{'label.contact'|trans }}</a>
+						</div>
+						<div class="k-login-v2__footer-info">
+							<a href="#" class="k-link">&copy; 2022 Parking</a>
+						</div>
+					</div>
+				</div> #}
+
+				<!--end::Item-->
+			</div>
+		</div>
+
+		<script>
+			var KAppOptions = {
+				"colors": {
+					"state": {
+						"brand": "#5d78ff",
+						"metal": "#c4c5d6",
+						"light": "#ffffff",
+						"accent": "#00c5dc",
+						"primary": "#5867dd",
+						"success": "#34bfa3",
+						"info": "#36a3f7",
+						"warning": "#ffb822",
+						"danger": "#fd3995",
+						"focus": "#9816f4"
+					},
+					"base": {
+						"label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+						"shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
+					}
+				}
+			};
+		</script>
+
+		<!-- end::Global Config -->
+
+		<!--begin:: Global Mandatory Vendors -->
+
+		<!--end:: Global Mandatory Vendors -->
+
+		<!--begin:: Global Optional Vendors -->
+
+		<!--end:: Global Optional Vendors -->
+
+		<!--end::Global App Bundle -->
+	</body>
+
+	<!-- end::Body -->
+</html>

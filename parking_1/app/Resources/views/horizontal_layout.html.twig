@@ -1,0 +1,57 @@
+{% extends 'bootstrap_4_horizontal_layout.html.twig' %}
+
+{# override ./vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/form_div_layout.html.twig #}
+{%- block form_start -%}
+    {%- do form.setMethodRendered() -%}
+    {% set method = method|upper %}
+    {%- if method in ["GET", "POST"] -%}
+        {% set form_method = method %}
+    {%- else -%}
+        {% set form_method = "POST" %}
+    {%- endif -%}
+    <form{% if name != '' %} name="{{ name }}"{% endif %} method="{{ form_method|lower }}"{% if action != '' %} action="{{ action }}"{% endif %}{{ block('attributes') }}{% if multipart %} enctype="multipart/form-data"{% endif %}class="{% if 'class' in attr and attr.class != ''%}{{attr.class}} {%endif%}horizontal">
+    {%- if form_method != method -%}
+        <input type="hidden" name="_method" value="{{ method }}" />
+    {%- endif -%}
+{%- endblock form_start -%}
+
+{%- block form_end -%}
+    {%- if not render_rest is defined or render_rest -%}
+        {{ form_rest(form) }}
+    {%- endif -%}
+    </form>
+{%- endblock form_end -%}
+
+
+
+{% block form_row -%}
+    <div class="form-group d-inline-flex {% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+        {% if form.vars.label != false and form.vars.label|length > 0 %}
+        {{- form_label(form) -}}
+        {% endif %}
+        <div class="{{ block('form_group_class') }}">
+            {{- form_widget(form) -}}
+            {{- form_errors(form) -}}
+        </div>
+{##}</div>
+{%- endblock form_row %}
+
+
+{% block form_label_class -%}
+d-inline-block
+{%- endblock form_label_class %}
+
+{% block form_group_class -%}
+col-sm-12 d-inline-block
+{%- endblock form_group_class %}
+
+{% block form_row_class -%}
+d-inline-flex
+{%- endblock form_row_class %}
+
+{# override ./vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/bootstrap_base_layout.html.twig #}
+{% block button_row -%}
+    <div class="form-group d-inline-flex">
+        {{- form_widget(form) -}}
+    </div>
+{%- endblock button_row %}

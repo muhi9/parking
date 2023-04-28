@@ -1,0 +1,37 @@
+.error.invalid-feedback ul {
+	list-style: disc;
+}
+.dynamic {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	clear: both;
+	margin-bottom: .5em;
+}
+.dynamic > li:last-child {
+	text-align: center;
+	margin-bottom: 0;
+	border-bottom: 0;
+}
+.dynamic > li {
+	/*max-width: 1280px;*/
+	margin-bottom: 2em;
+	position: relative;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.dynamic > li > .row {
+	padding-top: 1em;
+	padding-left: 1.5em;
+	margin-right: 4em;
+	margin-bottom: .75em;
+}
+.dynamic .btn-delete {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+    margin: 0 10px;
+    color: #3F4254;
+    background-color: #d7dae7;
+    border-color: #d7dae7;
+}

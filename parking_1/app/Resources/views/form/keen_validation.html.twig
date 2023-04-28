@@ -1,0 +1,471 @@
+{%- block form_start -%}
+
+    {%- do form.setMethodRendered() -%}
+    {% set method = method|upper %}
+    {%- if method in ["GET", "POST"] -%}
+        {% set form_method = method %}
+    {%- else -%}
+        {% set form_method = "POST" %}
+    {%- endif -%}
+    <form{% if name != '' %} name="{{ name }}"{% endif %} method="{{ form_method|lower }}"{% if action != '' %} action="{{ action }}"{% endif %}{{ block('attributes') }}{% if multipart %} enctype="multipart/form-data"{% endif %} class="k-form k-form--label-right" id="kform_id_{{ name }}" novalidate="novalidate">
+    {%- if form_method != method -%}
+        <input type="hidden" name="_method" value="{{ method }}" />
+    {%- endif -%}
+    <div class="k-portlet__body">
+        {%- if errors is defined and errors|length > 0 -%}
+        <div class="form-group form-group-last k-hide">
+            <div class="alert alert-danger" role="alert" id="k_form_1_msg">
+                <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                <div class="alert-text">
+                Oh snap! Change a few things up and try submitting again.
+                </div>
+                <div class="alert-close">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="la la-close"></i></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        {%- endif -%}
+{%- endblock form_start -%}
+
+{%- block form_end -%}
+    {%- if not render_rest is defined or render_rest -%}
+        {{ form_rest(form) }}
+    {%- endif -%}
+    </div>
+    </form>
+{%- endblock form_end -%}
+
+
+{%- block form_row -%}
+    {%- set classes = '' -%}
+
+    {%- if form.vars.attr.class is defined -%}
+        {%- set classes = form.vars.attr.class -%}
+    {%- endif -%}
+
+
+
+    {% set checkbox = ''%}
+     {%- if 'checkbox' in form.vars.block_prefixes -%}
+        {% set classes = classes~' k-checkbox' %}
+    {%- endif -%}
+
+
+    {%- set widget_attr = {'attr': { 'class':"form-control " ~classes,'im-insert':'true', 'aria-describedby': name ~'-error', } } -%}
+    {%- set label_attr = { 'class': 'col-form-label col-lg-3 col-sm-12', } -%}
+
+
+    {%- if form.vars.attr.id is defined -%}
+        {%- set widget_attr = widget_attr|merge({'id': form.vars.attr.id}) -%}
+    {%- endif -%}
+
+    {%- if form.vars.attr.child is defined -%}
+       {%- set widget_attr = widget_attr|merge({'child': form.vars.attr.child}) -%}
+    {%- endif -%}
+    {%- if form.vars.attr.child_type is defined -%}
+       {%- set widget_attr = widget_attr|merge({'child_type': form.vars.attr.child_type}) -%}
+    {%- endif -%}
+
+    {#{%- if help is not empty -%}
+        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+    {%- endif -%}
+    #}
+    {% set rowClass = 'form-group row ' %}
+    {% set divClass = 'col-lg-9 col-md-9 col-sm-12' %}
+    {% set labelClass = '' %}
+
+    {%- if form.vars.attr.rowClass is defined -%}
+      {% set rowClass =rowClass~form.vars.attr.rowClass %}
+    {%- endif -%}
+    {%- if form.vars.attr.labelClass is defined -%}
+      {% set label_attr = { 'class': 'col-form-label '~form.vars.attr.labelClass } %}
+    {%- endif -%}
+
+    {%- if form.vars.attr.divClass is defined  -%}
+      {% set divClass = form.vars.attr.divClass %}
+    {%- endif -%}
+
+<div class="{{rowClass}} validate">
+    {% set checkboxDiv = ''%}
+     {%- if 'checkbox' in form.vars.block_prefixes -%}
+        {% set checkboxDiv = 'kt-checkbox-list' %}
+    {%- endif -%}
+
+
+    {%- if form.vars.attr.labelRemove is not defined -%}
+        {{- form_label(form, null, { 'label_attr': label_attr} ) -}}
+    {%- endif -%}
+
+    <div class=" {{divClass}} {{checkboxDiv}}">
+        {%- if form.vars.attr.isCheckboxList is defined and form.vars.attr.isCheckboxList is not empty  -%}
+            {{ block('field_checbox_list') }}
+        {%- else -%}
+            {{- form_widget(form, widget_attr) -}}
+        {%- endif -%}
+
+        {{- form_errors(form) -}}
+        {{ block('field_help') }}
+    </div>
+</div>
+
+{%- if  form.vars.attr.class is defined and 'summernote' in form.vars.attr.class  -%}
+
+    {% javascripts '@summernote'%}
+        <script src="{{ asset_url }}?r={{ver}}" type="text/javascript"></script>
+    {% endjavascripts %}
+
+{% endif %}
+
+{%- if  form.vars.attr.class is defined and 'mask' in form.vars.attr.class  -%}
+    {% javascripts '@mask'%}
+        <script src="{{ asset_url }}?r={{ver}}" type="text/javascript"></script>
+    {% endjavascripts %}
+    <script  type="text/javascript">
+        inputMask('#'+'{{form.vars.id}}');
+    </script>
+
+{% endif %}
+{%- endblock form_row -%}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+
+    <div id="url-error" class="error invalid-feedback">
+    <ul>
+        {%- for error in errors -%}
+            <li>{{ error.message|trans }}</li>
+        {%- endfor -%}
+    </ul>
+    </div>
+    {%- endif -%}
+{%- endblock form_errors -%}
+
+
+{%- block form_label -%}
+    {% if label is not same as(false) -%}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif -%}
+        {% if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {%- endif -%}
+
+        {% if label is empty -%}
+            {%- if label_format is not empty -%}
+                {% set label = label_format|replace({
+                    '%name%': name,
+                    '%id%': id,
+                }) %}
+            {%- else -%}
+                {% set label = name|humanize %}
+            {%- endif -%}
+        {%- endif -%}
+        <{{ element|default('label') }}{% if label_attr %}{% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}{% endif %}>
+            {%- if translation_domain is same as(false) -%}
+                {{- label -}}
+            {%- else -%}
+                {{- label|trans({}, translation_domain) -}}
+            {%- endif -%}
+        </{{ element|default('label') }}>
+    {%- endif -%}
+{%- endblock form_label -%}
+
+
+{%- block field_checbox_list -%}
+
+    {% set chBm = [] %}
+    {%- if form.vars.data is defined and form.vars.data is not empty  -%}
+        {%- for bm in form.vars.data -%}
+                {% set chBm = chBm|merge([bm.id]) %}
+        {%- endfor -%}
+    {% endif %}
+
+    {%- if form.vars.attr.isCheckboxList is defined and form.vars.attr.isCheckboxList is not empty  -%}
+    <div class="col-lg-9 col-md-9 col-sm-12" id="{{form.vars.id}}" class="form-control border-0 " im-insert="true" aria-describedby="equipment-error">
+        {%- for child in form.children -%}
+
+            {%set checked = ""%}
+            {% if  child.vars.value in chBm %}
+                {%set checked = "checked"%}
+            {% endif %}
+            <div class="col-lg-3 col-md-6 col-sm-12 float-left">
+                <label class="k-checkbox" for="{{child.vars.id}}" ><input type="checkbox" id="{{child.vars.id}}" name="{{child.vars.full_name}}" {{checked}} value="{{child.vars.value}}" />{{child.vars.label|trans}}<span></span></label>
+            </div>
+        {%- endfor -%}
+
+    </div>
+   {%- endif -%}
+{%- endblock -%}
+
+{%- block submit_widget -%}
+
+    {#%- set classes = 'btn btn-sm btn-brand float-right' -%#}
+    {%- set classes = 'btn btn-primary' -%}
+    {%- if form.vars.attr.class is defined -%}
+        {%- set classes = classes ~ ' ' ~ form.vars.attr.class  -%}
+    {%- endif -%}
+    {#%- set attr = attr|merge({'class': 'form-control '~classes}) -%#}
+    {%- set attr = attr|merge({'class': classes}) -%}
+
+    {% if form.vars.attr.next is defined and form.parent.vars.data.id is empty %}
+        {% set label = 'label.next'%}
+        {% set attr = attr|merge({next:'label.save'|trans}) %}
+    {% else %}
+        {#% set label = 'label.save'%#}
+        {#% set attr[next] = null %#}
+        {% set attr = attr|merge({next:null}) %}
+        {%- if label is empty -%}
+            {%- if label_format is not empty -%}
+                {% set label = label_format|replace({
+                    '%name%': name,
+                    '%id%': id,
+                }) %}
+            {%- elseif label is same as(false) -%}
+                {% set translation_domain = false %}
+            {%- else -%}
+                {% set label = name|humanize %}
+            {%- endif -%}
+        {%- endif -%}
+    {% endif %}
+    {#fmskab-114 t.8#}
+    {% if form.vars.attr.nextForever is defined  %}
+        {% set label = 'label.next'%}
+
+        {% if form.parent.vars.data.id is empty %}
+            {% set attr = attr|merge({next:'label.save'|trans}) %}
+        {% else %}
+            {% set nextlabel = form.vars.attr.nextLabel ? form.vars.attr.nextLabel :null %}
+            {% set attr = attr|merge({next:nextlabel|trans}) %}
+        {% endif %}
+    {% endif %}
+
+    {# <div><button type="{{ type|default('submit') }}" {{ block('button_attributes') }}>{{ translation_domain is same as(false) ? label|default('label.save') : label|default('label.save')|trans({}, translation_domain) }}</button></div> #}
+    {% if attr.clear is not defined  %}
+        <hr />
+    {% endif %}
+    <div class="kt-portlet__foot">
+        <div class="kt-form__actions">
+            <div class="row">
+                <div class="col-lg-9 ml-lg-auto">
+                    <div><button type="{{ type|default('submit') }}" {{ block('button_attributes') }}>{{ translation_domain is same as(false) ? label|default('label.save') : label|default('label.save')|trans({}, translation_domain) }}</button></div>
+                    {#<button type="submit" class="{{classes}}" {{ block('attributes') }}>{{label|trans}}</button>#}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock submit_widget %}
+
+{%- block date_range_widget -%}
+    <i class="icon-xl far fa-calendar-plus" id="{{form.vars.id}}"></i>
+    {% javascripts '@FBaseBundle/Resources/public/js/daterange.js'%}
+        <script src="{{ asset_url }}?r={{ver}}" type="text/javascript"></script>
+    {% endjavascripts %}
+   
+    <script type="text/javascript">
+        $(function() {
+            var range = function(){
+                try{
+                    return JSON.parse('{{sys_settings.get('Date Range', false)|json_encode()|escape('js')}}');
+                }catch(e) {
+                    return null;
+                }
+            };
+            daterange("#{{form.vars.part_of_range_elements.picker}}", "#{{form.vars.part_of_range_elements.start}}", "#{{form.vars.part_of_range_elements.end}}",range());
+        })
+    </script>
+{%- endblock date_range_widget -%}
+
+{%- block date_range_label -%}
+    <label class="col-form-label  col-lg-3 col-sm-12  d-sm-none d-md-none d-lg-block"></label>
+{%- endblock date_range_label -%}
+
+{%- block datetime_widget -%}
+    {%- set classes = '' -%}
+
+    {%- if form.vars.attr.class is defined -%}
+        {%- set classes = form.vars.attr.class -%}
+    {%- endif -%}
+
+    {%- set classesTime = 'form-control time '~classes  -%}
+
+    {% if widget == 'single_text' %}
+        {{- block('form_widget_simple') -}}
+    {%- else -%}
+
+        {%- set attr = attr|merge({
+           'placeholder': (attr.placeholder is defined?attr.placeholder:'input.datetime.placeholder'),
+           'class': 'form-control calendar '~classes,
+        }) -%}
+        {% set disabled = disabled?'disabled="disabled"':'' %}
+        {#
+        {%- set attr = attr|merge({
+           'placeholder': (attr.placeholder is defined?attr.placeholder:'input.datetime.placeholder'),
+           'class': 'form-control calendar '~classes,
+           'readonly':'readonly',
+        }) -%}
+        #}
+
+    {%- set id = form.vars.id -%}
+        <div class="input-group date">
+            <input type="text" {{ block('widget_attributes') }}
+            {% if value.date.year is not empty %}value="{{-form.vars.data|date(i18n.date_format_s)-}}"{% endif %} regex="{{date_format_validation}}" />
+             <div class="input-group-append" id="{{id}}_icon" data-calendar="{{id}}">
+                <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+             </div>
+            {#FMSKAB-392 datetime type is change#} 
+            <input id="{{id}}_time" {{disabled}} type="text" class=" {{classesTime}}"  {#name="time[{{form.vars.name}}]"#}
+            name = "time[{{id}}]"
+                {% if value.date.year is not empty %}value="{{-i18n.timepick_format|replace({'H':   (value.time.hour),'i':   (value.time.minute)}) -}}" {% endif %}{% if form.vars.attr.tabindex is defined %}tabindex="{{form.vars.attr.tabindex+1}}" {%endif%}/>
+            <div class="input-group-append">
+             <span class="input-group-text"> <i  class="glyphicon flaticon-time glyphicon-time"></i></span>
+            </div>
+        </div>
+        {% javascripts '@FBaseBundle/Resources/public/js/datepick.js'%}
+            <script src="{{ asset_url }}?r={{ver}}" type="text/javascript"></script>
+        {% endjavascripts %}
+     <script>
+    {%- set time_interval = 15 -%}
+    {% if attr.interval is defined and attr.interval > 0 %}
+        {%- set time_interval = attr.interval -%}
+    {% endif %}
+    $(function() {
+        datepick('#{{form.vars.id}}');
+        $('#{{form.vars.id}}_time').timepick({
+           'timeFormat': '{{i18n.timepick_format}}',
+           'step': {{time_interval}}
+        });
+        //$('#{{form.vars.id}}_time').inputmask('00:00');
+        $('#{{form.vars.id}}_time').inputmask({
+            'regex': '(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]',
+            isComplete: function(buffer, opts) {
+                return new RegExp(opts.regex).test(buffer.join(''));
+            }
+        });
+
+    })
+    </script>
+{%- endif -%}
+
+{%- endblock datetime_widget -%}
+
+{%- block date_widget -%}
+    {%- if widget == 'single_text' -%}
+        {{ block('form_widget_simple') }}
+    {%- else -%}
+    {%- set attr = attr|merge({
+           'placeholder': (attr.placeholder is defined?attr.placeholder:'input.date.placeholder')
+        }) -%}
+        {#
+            {%- set attr = attr|merge({
+           'placeholder': (attr.placeholder is defined?attr.placeholder:'input.date.placeholder'),
+           'class': 'form-control',
+           'readonly':'readonly',
+        }) -%}
+        #}
+    {%- set id = form.vars.id -%}
+        <div class="input-group date">
+            <input type="text" {{ block('widget_attributes') }}
+            {% if value.year is not empty %}value="{{-form.vars.data|date(i18n.date_format_s)-}}"
+            {#{{-i18n.date_format|replace({
+                'yyyy':  (value.year),
+                'mm': (value.month),
+                'dd':   (value.day),
+            }) -}}"#}
+            {% endif %}
+            regex="{{date_format_validation}}"
+            />
+            <div class="input-group-append">
+                <span class="input-group-text">
+                    <i class="la la-calendar-check-o"></i>
+                </span>
+            </div>
+            {#
+                {% if errors %}
+                    <div class="invalid-feedback">{{- form_errors(form) -}}</div>
+                {% endif %}
+            #}
+
+        </div>
+         {% javascripts '@FBaseBundle/Resources/public/js/datepick.js'%}
+            <script src="{{ asset_url }}?r={{ver}}" type="text/javascript"></script>
+        {% endjavascripts %}
+    <script>
+    $(function() {
+       /* $('#{{form.vars.id}}').datepicker({
+            rtl: KUtil.isRTL(),
+            todayBtn: "linked",
+            clearBtn: {% if form.vars.attr.datepickerClearBtn is defined and form.vars.attr['datepickerClearBtn'] == true %}true{%else%}false{%endif%},
+            todayHighlight: true,
+            format: "{{i18n.date_format}}",
+            autoclose: true,
+            //startDate: new Date(new Date().setDate(new Date().getDate() - 100*366)),
+            //endDate: new Date(new Date().setDate(new Date().getDate() + 100*366)),
+            templates: {
+                leftArrow: '<i class="la la-angle-left"></i>',
+                rightArrow: '<i class="la la-angle-right"></i>'
+            }
+        });*/
+        datepick('#{{form.vars.id}}');
+    })
+
+    </script>
+
+        {#{dump(form.vars.value)}#}
+    {%- endif -%}
+{%- endblock date_widget -%}
+
+{%- block time_widget -%}
+    {%- if widget == 'single_text' -%}
+        {{ block('form_widget_simple') }}
+    {%- else -%}
+        {%- set vars = widget == 'text' ? { 'attr': { 'size': 1 }} : {} -%}
+        <div {{ block('widget_container_attributes') }}>
+            {{ form_widget(form.hour, vars) }}{% if with_minutes %}:{{ form_widget(form.minute, vars) }}{% endif %}{% if with_seconds %}:{{ form_widget(form.second, vars) }}{% endif %}
+        </div>
+    {%- endif -%}
+{%- endblock time_widget -%}
+
+{%- block dateinterval_widget -%}
+    {%- if widget == 'single_text' -%}
+        {{- block('form_widget_simple') -}}
+    {%- else -%}
+        <div {{ block('widget_container_attributes') }}>
+            {{- form_errors(form) -}}
+            <table class="{{ table_class|default('') }}" role="presentation">
+                <thead>
+                    <tr>
+                        {%- if with_years %}<th>{{ form_label(form.years) }}</th>{% endif -%}
+                        {%- if with_months %}<th>{{ form_label(form.months) }}</th>{% endif -%}
+                        {%- if with_weeks %}<th>{{ form_label(form.weeks) }}</th>{% endif -%}
+                        {%- if with_days %}<th>{{ form_label(form.days) }}</th>{% endif -%}
+                        {%- if with_hours %}<th>{{ form_label(form.hours) }}</th>{% endif -%}
+                        {%- if with_minutes %}<th>{{ form_label(form.minutes) }}</th>{% endif -%}
+                        {%- if with_seconds %}<th>{{ form_label(form.seconds) }}</th>{% endif -%}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {%- if with_years %}<td>{{ form_widget(form.years) }}</td>{% endif -%}
+                        {%- if with_months %}<td>{{ form_widget(form.months) }}</td>{% endif -%}
+                        {%- if with_weeks %}<td>{{ form_widget(form.weeks) }}</td>{% endif -%}
+                        {%- if with_days %}<td>{{ form_widget(form.days) }}</td>{% endif -%}
+                        {%- if with_hours %}<td>{{ form_widget(form.hours) }}</td>{% endif -%}
+                        {%- if with_minutes %}<td>{{ form_widget(form.minutes) }}</td>{% endif -%}
+                        {%- if with_seconds %}<td>{{ form_widget(form.seconds) }}</td>{% endif -%}
+                    </tr>
+                </tbody>
+            </table>
+            {%- if with_invert %}{{ form_widget(form.invert) }}{% endif -%}
+        </div>
+    {%- endif -%}
+{%- endblock dateinterval_widget -%}
+
+
+{%- block field_help -%}
+    {% if help|default %}
+        <span class="form-text text-muted">{{ help.title|default }}<code>{{ help.code|default|raw }}</code></span>
+    {% endif %}
+{%- endblock -%}
+

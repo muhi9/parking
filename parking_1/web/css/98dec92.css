@@ -1,0 +1,206 @@
+/*
+.flight_row {width: 100%;display: inline-block;margin-bottom: 0.5em;}
+.flight_row span {margin: 1em}
+*/
+
+.flight_filter.row {display:contents}
+.flight-line { max-width:1280px; margin-left:auto; margin-right:auto; margin:6px 0; border:#999 solid 1px; background-color:#FFF; padding:3px 0px 0px 0px; box-shadow: 3px 3px 5px #d7d7d7; position: relative;}
+.flight-col div{  height:20px; color:#999; font-size:11px;}
+.flight-col div b{ font-size:13px; font-weight:500; color:#666;}
+
+.flight-line .flight-col div.type {  height:20px; color:#999; font-size:11px; width: 110px!important;}
+.flight-line .flight-col div.type  b { width: 65px; display: block; text-align: center; display: inline-block; }
+.flight-line .type .training { color:#FFFFFF; background:#1BC5BD; border-radius:3px; padding: 2px 4px;}
+.flight-line .type .check { color:#FFFFFF; background:#EE9D01; border-radius:3px; padding: 2px 4px;}
+.flight-line .type .intro { color:#FFFFFF; background:#187DE4; border-radius:3px; padding: 2px 4px;}
+.flight-line .type .rent { color:#666666; background:#d7dae7; border-radius:3px; padding: 2px 4px;}
+
+.flight-line .status {width:6em; height:20px; background:#ECF0FF; color:#777777; font-size:11px; text-align:center; border-radius:3px 3px 0 0; padding:2px 4px; position:absolute; transform:rotateZ(-90deg) translate(-50%, -100%); left:-24px;}
+
+.flight-line .edit {float:right; padding:0 1em; text-align:center; background-color: #EFEFEF; margin-left:0%; margin-right:0%; margin-top:-3px; height:20px; color:#999; font-size:11px;}
+.flight-line .edit a {color:#666; font-size:13px; text-decoration:none; line-height:20px}
+.flight-line .edit a:hover {color: #F00; font-size:13px; text-decoration:none; line-height:20px}
+.flight-line .date{  height:20px; color:#999; font-size:11px; width: 115px!important;}
+.flight-line .date b{ font-size:13px; font-weight:500; color:#666;}
+.flight-line .from{  height:20px; color:#999; font-size:11px;}
+.flight-line .from b{ font-size:13px; font-weight:700; color:#666; border: #bbb solid 1px; border-radius: 3px; padding: 2px 5px;}
+.flight-line .blockon{height:20px; color:#999; font-size:11px;}
+.flight-line .blockon b{ font-size:13px; font-weight:500; color:#666; border: #bbb solid 1px; border-radius: 3px; padding: 2px;}
+.flight-line .to{  height:20px; color:#999; font-size:11px;}
+.flight-line .to b{ font-size:13px; font-weight:700; color:#666; border: #bbb solid 1px; border-radius: 3px; padding: 2px 5px;}
+.flight-line .blockoff{  height:20px; color:#999; font-size:11px;}
+.flight-line .blockoff b{ font-size:13px; font-weight:500; color:#666; border: #bbb solid 1px; border-radius: 3px; padding: 2px;}
+.flight-line .totaltime{  height:20px; color:#999; font-size:11px;}
+.flight-line .totaltime b{ font-size:13px; font-weight:700; background:#F3F3F3; color:#666; border: #bbb solid 1px; border-radius: 3px; padding: 2px;}
+.flight-line .aircraft {  height:20px; color:#999; font-size:11px;}
+.flight-line .aircraft  b{ font-size:13px; font-weight:500; color:#FFF; background:#999; border:0px; padding: 3px; border-radius: 3px;}
+.flight-line .reg {  height:20px; color:#999; font-size:11px; width: 130px!important;}
+.flight-line .reg  b{ font-size:13px; font-weight:500; color:#FFF; background:#666; border:0px; padding: 3px; border-radius: 3px;}
+.flight-line .atype { height:20px; color:#999; font-size:11px; width: 110px!important;}
+.flight-line .atype  b{ font-size:13px; font-weight:500; color:#FFF; background:#999; border:0px; padding: 3px; border-radius: 3px;}
+.flight-line .flight_rules {  height:20px; color:#999; font-size:11px;}
+.flight-line .flight_rules b{ font-size:13px; font-weight:500; color:#FFF; background:#999; border:0px; padding: 3px; border-radius: 3px;}
+
+.flight-line .land { color:#999; font-size:11px;}
+.flight-line .land  b{ cursor:pointer; font-size:12px; font-weight:700; color:#666; padding: 3px; border: solid 0px; background:#F3F3F3; border-radius: 3px;}
+.flight-line .crew {  height:20px; color:#999; font-size:11px;}
+.flight-line .crew b{ font-size:12px; font-weight:500; color:#666;}
+
+.flight-line .save { height:20px; color:#999; font-size:11px;}
+.flight-line .save  b{ font-size:12px; font-weight:500; color:#666;}
+.flight-line .stud {  height:20px; color:#999; font-size:11px;}
+.flight-line .stud  b{ font-size:12px; font-weight:500; color:#666;}
+
+.flight-line .ttype {  height:20px; color:#999; font-size:11px;}
+.flight-line .ttype  b{ font-size:12px; font-weight:700; color:#555;}
+.flight-line .exercise { height:20px; color:#999; font-size:11px;}
+.flight-line .exercise  b{
+    /*cursor:pointer;*/
+    padding: 3px;
+    font-size:12px; font-weight:500;
+    color:#999;
+    background: none; /*#db0800;*/
+    border: 1px solid #bbb;
+    border-radius: 4px;
+}
+.flight-line .forder { height:20px; color:#999; font-size:11px;}
+.flight-line .forder  b{ cursor:pointer; font-size:12px; font-weight:500; color:#666; padding: 3px; border: solid 1px; background:#fcfcfc; border-radius: 5px;}
+.flight-line .preparation {  height:20px; color:#999; font-size:11px;}
+.flight-line .preparation  b{ font-size:12px; font-weight:500; color:#666;}
+.flight-line .logbook {  height:20px; color:#999; font-size:11px;}
+.flight-line .logbook  b{ font-size:12px; font-weight:500; color:#666;}
+.flight-line .logbook  a{ color:#8786af;}
+
+.flight-line .tacho_hobbs {  height:20px; color:#999; font-size:11px;}
+.flight-line .tacho_hobbs  b{ font-size:12px; font-weight:500; color:#666;}
+
+.flight-line .gpss {  height:20px; color:#999; font-size:11px;}
+.flight-line .gpss  b{ font-size:12px; font-weight:500; color:#666;}
+.flight-line .gpsstop {  height:20px; color:#999; font-size:11px;}
+.flight-line .gpsstop  b{ font-size:12px; font-weight:500; color:#666;}
+.flight-line .gpstotal {  height:20px; color:#666; font-weight:400; font-size:11px;}
+.flight-line .gpstotal  b{ font-size:12px; font-weight:500; color:#333;}
+
+.flight-line .gpstrack {  height:20px; color:#666; font-weight:400; font-size:11px;}
+.flight-line .gpstrack  b{ font-size:12px; font-weight:500; color:#333;}
+.flight-line .gpstrack  a{ color:#8786af;}
+
+.flight-line .note { width: 100%; min-height:20px; color:#999; font-size:11px; border-top: 1px solid #CCC;}
+.flight-line .note b{ font-size:12px; font-weight:400; color:#666;}
+
+.flight-line-total { min-width:1250px; max-width:1280px; margin-left:auto; margin-right:auto; height:71px; margin-top:6px; border:#999 solid 1px; background-color:#FFF; padding:3px 0px 0px 0px;}
+.flight-line-total .totaltime{ float:left; width:auto; margin-left:0.30%; margin-right:0.30%; margin-top:0.30%; height:20px; color:#999; font-size:12px;}
+.flight-line-total .totaltime b{ font-size:13px; font-weight:700; background:#F3F3F3; color:#666; border: #bbb solid 1px; border-radius: 3px; padding: 2px;}
+
+.flight_filter_form{max-width: 1280px;}
+.flight_filter_form .col-form-label {
+    max-width: 300px;
+}
+.flight-col div {
+    	margin: 0.25em 0;
+    	padding: 0 0.25em;
+}
+
+.flight-col:not(.last) div {
+    	width: auto;/* !important;*/
+}
+.flight-col .last div{
+    	width: 100% !important;
+	}
+@media (max-width: 780px){
+	.flight-col:not(.last) div {
+    	width: 20% !important;
+    }
+	.flight-col .from, .flight-col .to {
+    	width: 25% !important;
+	}
+}
+@media (max-width: 700px){
+
+	.flight_filter_form .col-form-label {
+    	max-width: 100%;
+	}
+
+	.flight_filter_form .col-form-label:last-child{
+		width: 100%;
+	}
+	.flight-col:not(.last) div {
+    	width: 27% !important;
+    }
+    .flight-col .from, .flight-col .to {
+    	width: 30% !important;
+	}
+    .flight-col:not(.last) div b {
+    	float: right;
+	}
+	.flight-line .edit{
+		height:30px;
+	}
+	.flight-line .edit a{
+		line-height:30px;
+	}
+}
+@media (max-width: 580px){
+	.flight-col:not(.last) div {
+    	width: 45% !important;
+    	margin: 0.5em;
+    	padding: 0.25em;
+	}
+	.flight-col:not(.last) div b {
+    	float: right;
+	}
+
+	.flight-col .from, .flight-col .to {
+    	width: 70% !important;
+	}
+
+	.flight-col .from b, .flight-col .to b {
+    	/*float: unset;*/
+	}
+}
+.landings .row > div {
+	padding-right: 0;
+}
+
+.form-control.day, .form-control.night {background:no-repeat 8px center;padding-left:40px}
+.form-control.night {background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABrElEQVR42rXWSyhEURzH8TMrUh6lyIINSkh5bWwtkEgoSSwtrJTXQpEsKWUpjQ07Ka+kLESipMROyQYLKQmJSXz/nXPrNt3HceNXn2a4Z+7/zJnzuDFlnyxUoQCpeMI2XoM+FAu5qVxvxwCqcY4bZKMBtbiIWqAUcfN+Blv4MH/vYs/8P7SHXmk2Nx/HYtK1esyjAl9RCsgNltGKU4/ra+bbxJVFkgvk4QxdOPRon4IHpX/o5ygFVnCNCZ/2NVhQejZZxV2g2PS6EG8+7TvQjc4oBabNEIwGtO9BI3qjFDjBiPIeeyct6Devvyogry/IDRgeSYnSM6jotwXScYtMi/b3qFN6Rf95AYksMtmHJv9jiJQZniOU4dG2gMTmR3Yyi3ylF6R1AZtp6kS26wOlt+sp2wI2C82dHKV31H0M4zOsgCRsq0iOTIol07kx7OA7qEDYZueXNtMpmY0bOMaqVwFJ2HYdlEqlt/E0lCMR5cDxSwbmlD5Gm3Dn9w2cBB2Z7sja6cMgNjGkXJMk6qH/rvRThnRC1sO66f2l1w1sk/zYIifaldJPFQm/D/0AvUFdGbnPYuoAAAAASUVORK5CYII=)}
+.form-control.day {background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABF0lEQVR42mNkoDFgJFE9C5T+QysLqqF0K60saIbStZRYwAHEckB8i0QL1ID4ERD/IGQBSOFRII4A4r1ocmFQehWauDMQrwBia3SH4QoimIZwIN5HIBScgHglDgfhjQMnqItAwaIKxLlAbA6VOwnEk4H4NjS4juJyCDGRHALE04F4BhDvhIq5A3EGEGcC8Rp8mglZAHL5MaiB59DkjKAWWkF9QpYFk4D4IwPuZNkExAJAnEfIAlAOLWeAJFEQuMwASSmgsC4G4iM49NsAcS8DJG5AKUwXKg5Kqp1A/IduFtA8iHABmkcyCMCSKQjvgoq5MUCSKEXJ1AnquhYGGmQ0mhYVNC/saF5c4wNUqXDwAZpXmTSv9EkGAG19UhmyeVYaAAAAAElFTkSuQmCC)}
+
+.details {
+	padding-left: 2em;
+}
+.crew_user_info span {
+    margin-right: 0.5em;
+}
+.hide {
+	display: none;
+}
+
+.price.row {
+	padding: 1em;
+}
+.price.row .col-2 {
+	text-align: center;
+}
+#flight_tabs_prices .content label {
+	text-align: left;
+}
+.dynamic_exercise_elements li {list-style: none;}
+
+.excercise-element {
+    padding: 20px 30px;
+}
+
+.excercise-element.new { background: #efef; }
+.excercise-element.odd { background: #F3F6F9; }
+.excercise-element.even { background: #F8F8F8; }
+
+.excercise-element label.col-form-label {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+
+.k-form button.btn[type=submit], .k-form input.btn[type=submit] {
+	white-space: nowrap;
+}

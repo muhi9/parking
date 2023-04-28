@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="en">
+  <file id="FOSUserBundle.en">
+    <unit id="7oF7jXj" name="layout.logout">
+      <segment>
+        <source>layout.logout</source>
+        <target>Logout</target>
+      </segment>
+    </unit>
+    <unit id="J.8npBV" name="layout.login">
+      <segment>
+        <source>layout.login</source>
+        <target>Login</target>
+      </segment>
+    </unit>
+    <unit id="7g9SaRk" name="profile.show.username">
+      <segment>
+        <source>profile.show.username</source>
+        <target>Show username</target>
+      </segment>
+    </unit>
+    <unit id="AaZaMf7" name="profile.show.email">
+      <segment>
+        <source>profile.show.email</source>
+        <target>Show Email</target>
+      </segment>
+    </unit>
+    <unit id="ci5Tbzf" name="profile.edit.submit">
+      <segment>
+        <source>profile.edit.submit</source>
+        <target>Submit</target>
+      </segment>
+    </unit>
+    <unit id="KsNOzZz" name="resetting.reset.submit">
+      <segment>
+        <source>resetting.reset.submit</source>
+        <target>Submit</target>
+      </segment>
+    </unit>
+    <unit id="_cY.wHP" name="resetting.check_email">
+      <segment>
+        <source>resetting.check_email</source>
+        <target>check email</target>
+      </segment>
+    </unit>
+    <unit id="Redv4tu" name="resetting.email.subject">
+      <segment>
+        <source>resetting.email.subject</source>
+        <target>Subject</target>
+      </segment>
+    </unit>
+    <unit id="Lm8o8Qg" name="resetting.email.message">
+      <segment>
+        <source>resetting.email.message</source>
+        <target>Message</target>
+      </segment>
+    </unit>
+    <unit id="f5J.GZt" name="resetting.request.username">
+      <segment>
+        <source>resetting.request.username</source>
+        <target>Username</target>
+      </segment>
+    </unit>
+    <unit id="55aST1i" name="resetting.request.submit">
+      <segment>
+        <source>resetting.request.submit</source>
+        <target>Submit</target>
+      </segment>
+    </unit>
+    <unit id="cMU.0rQ" name="security.login.username">
+      <segment>
+        <source>security.login.username</source>
+        <target>username</target>
+      </segment>
+    </unit>
+    <unit id="N_kLMwm" name="security.login.password">
+      <segment>
+        <source>security.login.password</source>
+        <target>password</target>
+      </segment>
+    </unit>
+    <unit id="8DSptbg" name="security.login.remember_me">
+      <segment>
+        <source>security.login.remember_me</source>
+        <target>remember_me</target>
+      </segment>
+    </unit>
+    <unit id="tuAV77Z" name="security.login.submit">
+      <segment>
+        <source>security.login.submit</source>
+        <target>login</target>
+      </segment>
+    </unit>
+    <unit id=".ndupSK" name="registration.check_email">
+      <segment>
+        <source>registration.check_email</source>
+        <target>check email %email%</target>
+      </segment>
+    </unit>
+    <unit id="B.ZozIs" name="registration.confirmed">
+      <segment>
+        <source>registration.confirmed</source>
+        <target>registration is confirmed</target>
+      </segment>
+    </unit>
+    <unit id="_wd.d62" name="registration.back">
+      <segment>
+        <source>registration.back</source>
+        <target>back</target>
+      </segment>
+    </unit>
+    <unit id="N.aTMve" name="registration.email.subject">
+      <segment>
+        <source>registration.email.subject</source>
+        <target>Subject</target>
+      </segment>
+    </unit>
+    <unit id="hN23SFM" name="registration.email.message">
+      <segment>
+        <source>registration.email.message</source>
+        <target>Message</target>
+      </segment>
+    </unit>
+    <unit id="hmX3IJA" name="registration.submit">
+      <segment>
+        <source>registration.submit</source>
+        <target>Signubmit</target>
+      </segment>
+    </unit>
+    <unit id="_JrLEnp" name="security.login.title">
+      <segment>
+        <source>security.login.title</source>
+        <target>Sign to Account</target>
+      </segment>
+    </unit>
+    <unit id="LCu1xlZ" name="security.login.forgetpass">
+      <segment>
+        <source>security.login.forgetpass</source>
+        <target>Forgot Password ?</target>
+      </segment>
+    </unit>
+    <unit id="6a2PoxU" name="security.login.login">
+      <segment>
+        <source>security.login.login</source>
+        <target>Login</target>
+      </segment>
+    </unit>
+    <unit id="YkwpKrW" name="security.login.sing_up">
+      <segment>
+        <source>security.login.sing_up</source>
+        <target>Sign Up</target>
+      </segment>
+    </unit>
+    <unit id="b5NHqB_" name="security.login.donthave_account">
+      <segment>
+        <source>security.login.donthave_account</source>
+        <target>Don't have an account?</target>
+      </segment>
+    </unit>
+    <unit id="AWx.jVH" name="security.login.social">
+      <segment>
+        <source>security.login.social</source>
+        <target>Or sign with social account</target>
+      </segment>
+    </unit>
+    <unit id="e2jdB1k" name="security.login.facebook">
+      <segment>
+        <source>security.login.facebook</source>
+        <target>Facebook</target>
+      </segment>
+    </unit>
+    <unit id="F2e4YEx" name="security.login.twitter">
+      <segment>
+        <source>security.login.twitter</source>
+        <target>Twitter</target>
+      </segment>
+    </unit>
+    <unit id="97em3uQ" name="security.login.google">
+      <segment>
+        <source>security.login.google</source>
+        <target>Google</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

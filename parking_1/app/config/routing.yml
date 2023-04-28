@@ -1,0 +1,27 @@
+parking:
+    resource: "@ParkingBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+users:    
+    resource: "@UsersBundle/Controller/"
+    type: annotation
+    prefix: /
+    
+f_base:
+    resource:   "@FBaseBundle/Controller/"
+    type:   annotation
+    prefix: /
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /user/profile
+_translation_edit_in_place:
+    resource: '@TranslationBundle/Resources/config/routing_edit_in_place.yml'
+    prefix:  /admin
+
+app:
+    resource: "@AppBundle/Controller/"
+    type: annotation
+    prefix: /           

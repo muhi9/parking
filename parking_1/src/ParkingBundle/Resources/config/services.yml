@@ -1,0 +1,14 @@
+services:
+#    parking.example:
+#        class: ParkingBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+services:
+   
+    send_email:
+        class: ParkingBundle\Service\SendEmail
+        arguments:
+            - '@swiftmailer.mailer.default'
+            - '%mail_sender%'
+            - '@doctrine.orm.entity_manager'
+            - '@router'
+        public: true

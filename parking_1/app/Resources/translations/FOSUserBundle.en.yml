@@ -1,0 +1,30 @@
+layout.logout: Logout
+layout.login: __layout.login
+profile.show.username: 'Show username'
+profile.show.email: 'Show Email'
+profile.edit.submit: Submit
+resetting.reset.submit: Submit
+resetting.check_email: 'check email'
+resetting.email.subject: Subject
+resetting.email.message: Message
+resetting.request.username: Username
+resetting.request.submit: Submit
+security.login.username: username
+security.login.password: password
+security.login.remember_me: remember_me
+security.login.submit: login
+registration.check_email: 'check email %email%'
+registration.confirmed: 'registration is confirmed'
+registration.back: back
+registration.email.subject: Subject
+registration.email.message: Message
+registration.submit: Signubmit
+security.login.title: 'Sign to Account'
+security.login.forgetpass: 'Forgot Password ?'
+security.login.login: Login
+security.login.sing_up: 'Sign Up'
+security.login.donthave_account: 'Don''t have an account?'
+security.login.social: 'Or sign with social account'
+security.login.facebook: Facebook
+security.login.twitter: Twitter
+security.login.google: Google
